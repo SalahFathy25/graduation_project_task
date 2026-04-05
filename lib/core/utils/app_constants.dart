@@ -30,7 +30,8 @@ class AppConstants {
       {
         'id': 'mecca',
         'name': isArabic ? l10n.cityMecca : 'Mecca',
-        'image': 'https://imgs.search.brave.com/PnK0zW92qAFCLJM77Xi8cfkUQvjTKraHSk1GgSRY-0c/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9wbmcu/cG5ndHJlZS5jb20v/dGh1bWJfYmFjay9m/aDI2MC9iYWNrZ3Jv/dW5kLzIwMjUwNzAz/L3BuZ3RyZWUtYWVy/aWFsLXZpZXctb2Yt/dGhlLWthYWJhLWlu/LW1lY2NhLWlsbHVt/aW5hdGVkLWF0LW5p/Z2h0LXN1cnJvdW5k/ZWQtaW1hZ2VfMTc0/NTY4NTAud2VicA',
+        'image':
+            'https://imgs.search.brave.com/PnK0zW92qAFCLJM77Xi8cfkUQvjTKraHSk1GgSRY-0c/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9wbmcu/cG5ndHJlZS5jb20v/dGh1bWJfYmFjay9m/aDI2MC9iYWNrZ3Jv/dW5kLzIwMjUwNzAz/L3BuZ3RyZWUtYWVy/aWFsLXZpZXctb2Yt/dGhlLWthYWJhLWlu/LW1lY2NhLWlsbHVt/aW5hdGVkLWF0LW5p/Z2h0LXN1cnJvdW5k/ZWQtaW1hZ2VfMTc0/NTY4NTAud2VicA',
         'desc': isArabic ? l10n.meccaDesc : 'The Holiest City.',
         'location': isArabic ? 'غرب المملكة العربية السعودية' : 'Western Saudi Arabia',
         'region': 'western',
@@ -42,7 +43,8 @@ class AppConstants {
       {
         'id': 'medina',
         'name': isArabic ? l10n.cityMedina : 'Medina',
-        'image': 'https://imgs.search.brave.com/Vw9LKhc4NRoutW76wWyEoda0MQ0xpuZpXb1C72EWl_o/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9zdGF0/aWMuc3JwY2RpZ2l0/YWwuY29tL3N0eWxl/cy8xMDM3eGF1dG8v/cHVibGljLzIwMTQv/MDQvMDEvMTM5NTg0/OTgzODgzNDI2Nzgw/MC5qcGcud2VicA',
+        'image':
+            'https://imgs.search.brave.com/Vw9LKhc4NRoutW76wWyEoda0MQ0xpuZpXb1C72EWl_o/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9zdGF0/aWMuc3JwY2RpZ2l0/YWwuY29tL3N0eWxl/cy8xMDM3eGF1dG8v/cHVibGljLzIwMTQv/MDQvMDEvMTM5NTg0/OTgzODgzNDI2Nzgw/MC5qcGcud2VicA',
         'desc': isArabic ? l10n.medinaDesc : 'The City of the Prophet.',
         'location': isArabic ? 'غرب المملكة العربية السعودية' : 'Western Saudi Arabia',
         'region': 'western',
@@ -54,7 +56,8 @@ class AppConstants {
       {
         'id': 'alula',
         'name': isArabic ? l10n.cityAlUla : 'AlUla',
-        'image': 'https://imgs.search.brave.com/3ohePEn2eXWVmhzPiKjxe0F-lyEUvyHpXl_x4OX5FAA/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9jbXMu/ZmFjdG1hZ2F6aW5l/cy5jb20vd3AtY29u/dGVudC91cGxvYWRz/LzIwMjQvMDMvRWxl/cGhhbnQtUm9jay1B/bFVsYS5qcGVn',
+        'image':
+            'https://imgs.search.brave.com/3ohePEn2eXWVmhzPiKjxe0F-lyEUvyHpXl_x4OX5FAA/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9jbXMu/ZmFjdG1hZ2F6aW5l/cy5jb20vd3AtY29u/dGVudC91cGxvYWRz/LzIwMjQvMDMvRWxl/cGhhbnQtUm9jay1B/bFVsYS5qcGVn',
         'desc': isArabic ? l10n.alUlaDesc : 'Historic Oasis.',
         'location': isArabic ? 'شمال غرب المملكة العربية السعودية' : 'Northwestern Saudi Arabia',
         'region': 'northwestern',
@@ -66,7 +69,8 @@ class AppConstants {
       {
         'id': 'abha',
         'name': isArabic ? l10n.cityAbha : 'Abha',
-        'image': 'https://imgs.search.brave.com/DorlFb3ge3AyW55M6d8146QQy4L4midmisfemf1Wkfk/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9jbm4t/YXJhYmljLWltYWdl/cy5jbm4uaW8vY2xv/dWRpbmFyeS9pbWFn/ZS91cGxvYWQvd18x/OTIwLGNfc2NhbGUs/cV9hdXRvL2NubmFy/YWJpYy8yMDIxLzA1/LzA0L2ltYWdlcy8x/ODQxNDAuanBn',
+        'image':
+            'https://imgs.search.brave.com/DorlFb3ge3AyW55M6d8146QQy4L4midmisfemf1Wkfk/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9jbm4t/YXJhYmljLWltYWdl/cy5jbm4uaW8vY2xv/dWRpbmFyeS9pbWFn/ZS91cGxvYWQvd18x/OTIwLGNfc2NhbGUs/cV9hdXRvL2NubmFy/YWJpYy8yMDIxLzA1/LzA0L2ltYWdlcy8x/ODQxNDAuanBn',
         'desc': isArabic ? l10n.abhaDesc : 'The City of Fog.',
         'location': isArabic ? 'جنوب المملكة العربية السعودية' : 'Southern Saudi Arabia',
         'region': 'southern',
