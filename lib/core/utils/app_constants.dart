@@ -14,10 +14,20 @@ class AppConstants {
         'weather': '32°C',
         'weatherDesc': isArabic ? 'مشمس' : 'Sunny',
         'categories': ['business', 'luxury'],
-        'topPlaces': isArabic 
-            ? ['برج المملكة', 'البوليفارد (موسم الرياض)', 'الدرعية التاريخية', 'حافة العالم (Edge of the World)']
-            : ['Kingdom Tower', 'Boulevard (Riyadh Season)', 'Historic Diriyah', 'Edge of the World'],
-        'activities': isArabic 
+        'topPlaces': isArabic
+            ? [
+                'برج المملكة',
+                'البوليفارد (موسم الرياض)',
+                'الدرعية التاريخية',
+                'حافة العالم (Edge of the World)'
+              ]
+            : [
+                'Kingdom Tower',
+                'Boulevard (Riyadh Season)',
+                'Historic Diriyah',
+                'Edge of the World'
+              ],
+        'activities': isArabic
             ? {
                 'ترفيه': ['موسم الرياض', 'ألعاب', 'حفلات'],
                 'مغامرة': ['رحلات بر', 'هايكينج', 'تسلق'],
@@ -42,10 +52,10 @@ class AppConstants {
         'weather': '30°C',
         'weatherDesc': isArabic ? 'رطب' : 'Humid',
         'categories': ['luxury', 'family'],
-        'topPlaces': isArabic 
+        'topPlaces': isArabic
             ? ['كورنيش جدة', 'البلد التاريخية', 'نادي اليخوت', 'البحر الأحمر']
             : ['Jeddah Corniche', 'Historic Al-Balad', 'Yacht Club', 'Red Sea'],
-        'activities': isArabic 
+        'activities': isArabic
             ? {
                 'بحر': ['جيتسكي', 'غوص', 'باراشوت', 'قوارب'],
                 'استرخاء': ['جلسات بحرية'],
@@ -70,10 +80,10 @@ class AppConstants {
         'weather': '24°C',
         'weatherDesc': isArabic ? 'معتدل' : 'Moderate',
         'categories': ['family', 'nature'],
-        'topPlaces': isArabic 
+        'topPlaces': isArabic
             ? ['الهدا', 'الشفا', 'مزارع الورد', 'قصر شبرا']
             : ['Al Hada', 'Ash Shafa', 'Rose Farms', 'Shubra Palace'],
-        'activities': isArabic 
+        'activities': isArabic
             ? {
                 'ثقافة': ['مهرجان الورد'],
                 'طبيعة': ['جبال ومنتجعات'],
@@ -92,16 +102,17 @@ class AppConstants {
         'name': isArabic ? l10n.cityNajran : 'Najran',
         'image': 'https://i.pinimg.com/1200x/1e/8e/8e/1e8e8e78888a78888a78888a78888a78.jpg',
         'desc': isArabic ? l10n.najranDesc : 'Ancient Historic City.',
-        'location': isArabic ? l10n.locationNajran : 'Southern Saudi Arabia on the border with Yemen',
+        'location':
+            isArabic ? l10n.locationNajran : 'Southern Saudi Arabia on the border with Yemen',
         'region': 'southern',
         'rating': 4.4,
         'weather': '28°C',
         'weatherDesc': isArabic ? 'صافي' : 'Clear',
         'categories': ['history', 'adventure'],
-        'topPlaces': isArabic 
+        'topPlaces': isArabic
             ? ['الأخدود الأثري', 'القرى الطينية', 'الواحات']
             : ['Archaeological Al-Ukhdood', 'Mud Villages', 'Oases'],
-        'activities': isArabic 
+        'activities': isArabic
             ? {
                 'صحاري': ['رحلات سفاري'],
                 'تاريخ': ['مواقع أثرية'],
@@ -124,10 +135,10 @@ class AppConstants {
         'weather': '18°C',
         'weatherDesc': isArabic ? 'بارد' : 'Cold',
         'categories': ['nature', 'adventure'],
-        'topPlaces': isArabic 
+        'topPlaces': isArabic
             ? ['وادي الديسة', 'الجبال', 'المناطق الثلجية شتاءً']
             : ['Wadi Al Disah', 'Mountains', 'Snowy Areas in Winter'],
-        'activities': isArabic 
+        'activities': isArabic
             ? {
                 'شتاء': ['ثلوج'],
                 'مغامرة': ['وديان'],
@@ -144,16 +155,17 @@ class AppConstants {
         'name': isArabic ? l10n.cityBaha : 'Al Baha',
         'image': 'https://i.pinimg.com/1200x/3b/3b/3b/3b3b3b3b3b3b3b3b3b3b3b3b3b3b3b3b.jpg',
         'desc': isArabic ? l10n.bahaDesc : 'The Pearl of the Mountains.',
-        'location': isArabic ? l10n.locationBaha : 'Southwestern Saudi Arabia between Taif and Abha',
+        'location':
+            isArabic ? l10n.locationBaha : 'Southwestern Saudi Arabia between Taif and Abha',
         'region': 'southern',
         'rating': 4.5,
         'weather': '20°C',
         'weatherDesc': isArabic ? 'غائم' : 'Cloudy',
         'categories': ['nature', 'adventure'],
-        'topPlaces': isArabic 
+        'topPlaces': isArabic
             ? ['غابة رغدان', 'قرية ذي عين', 'الشلالات الطبيعية']
             : ['Raghadan Forest', 'Thee Ain Village', 'Natural Waterfalls'],
-        'activities': isArabic 
+        'activities': isArabic
             ? {
                 'طبيعة': ['غابات', 'شلالات'],
                 'مغامرة': ['تسلق', 'رحلات'],
@@ -168,7 +180,8 @@ class AppConstants {
       {
         'id': 'abha',
         'name': isArabic ? l10n.cityAbha : 'Abha',
-        'image': 'https://imgs.search.brave.com/DorlFb3ge3AyW55M6d8146QQy4L4midmisfemf1Wkfk/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9jbm4t/YXJhYmljLWltYWdl/cy5jbm4uaW8vY2xv/dWRpbmFyeS9pbWFn/ZS91cGxvYWQvd18x/OTIwLGNfc2NhbGUs/cV9hdXRvL2NubmFy/YWJpYy8yMDIxLzA1/LzA0L2ltYWdlcy8x/ODQxNDAuanBn',
+        'image':
+            'https://imgs.search.brave.com/DorlFb3ge3AyW55M6d8146QQy4L4midmisfemf1Wkfk/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9jbm4t/YXJhYmljLWltYWdl/cy5jbm4uaW8vY2xv/dWRpbmFyeS9pbWFn/ZS91cGxvYWQvd18x/OTIwLGNfc2NhbGUs/cV9hdXRvL2NubmFy/YWJpYy8yMDIxLzA1/LzA0L2ltYWdlcy8x/ODQxNDAuanBn',
         'desc': isArabic ? l10n.abhaDesc : 'The City of Fog.',
         'location': isArabic ? l10n.locationAbha : 'Southwestern Saudi Arabia (Asir Region)',
         'region': 'southern',
@@ -176,10 +189,10 @@ class AppConstants {
         'weather': '22°C',
         'weatherDesc': isArabic ? 'غائم جزئياً' : 'Partly Cloudy',
         'categories': ['family', 'adventure'],
-        'topPlaces': isArabic 
+        'topPlaces': isArabic
             ? ['السودة', 'رجال ألمع', 'التلفريك', 'منتزه عسير']
             : ['Al Souda', 'Rijal Almaa', 'Teleferic', 'Asir Park'],
-        'activities': isArabic 
+        'activities': isArabic
             ? {
                 'طبيعة': ['جبال', 'ضباب', 'هايكينج'],
                 'مغامرة': ['تلفريك', 'تسلق'],
@@ -204,10 +217,10 @@ class AppConstants {
         'weather': '26°C',
         'weatherDesc': isArabic ? 'صافي' : 'Clear',
         'categories': ['luxury', 'business'],
-        'topPlaces': isArabic 
+        'topPlaces': isArabic
             ? ['ذا لاين', 'الشواطئ البكر', 'الجبال']
             : ['The Line', 'Pristine Beaches', 'Mountains'],
-        'activities': isArabic 
+        'activities': isArabic
             ? {
                 'مستقبل': ['تجارب تقنية'],
                 'بحر': ['غوص', 'قوارب'],
@@ -226,16 +239,17 @@ class AppConstants {
         'name': isArabic ? 'الدمام والخبر' : 'Dammam & Khobar',
         'image': 'https://i.pinimg.com/1200x/5e/5e/5e/5e5e5e5e5e5e5e5e5e5e5e5e5e5e5e5e.jpg',
         'desc': isArabic ? l10n.dammamDesc : 'Coastal Eastern City.',
-        'location': isArabic ? l10n.locationDammamKhobar : 'Eastern Saudi Arabia on the Arabian Gulf',
+        'location':
+            isArabic ? l10n.locationDammamKhobar : 'Eastern Saudi Arabia on the Arabian Gulf',
         'region': 'eastern',
         'rating': 4.6,
         'weather': '28°C',
         'weatherDesc': isArabic ? 'رطب' : 'Humid',
         'categories': ['family', 'luxury'],
-        'topPlaces': isArabic 
+        'topPlaces': isArabic
             ? ['كورنيش الخبر', 'شاطئ نصف القمر', 'الواجهة البحرية']
             : ['Khobar Corniche', 'Half Moon Bay', 'Waterfront'],
-        'activities': isArabic 
+        'activities': isArabic
             ? {
                 'بحر': ['سباحة', 'قوارب'],
                 'تسوق': ['مجمعات'],
@@ -258,10 +272,9 @@ class AppConstants {
         'weather': '30°C',
         'weatherDesc': isArabic ? 'حار رطب' : 'Hot & Humid',
         'categories': ['nature', 'adventure'],
-        'topPlaces': isArabic 
-            ? ['الجبال', 'البحر', 'جزر فرسان']
-            : ['Mountains', 'Sea', 'Farasan Islands'],
-        'activities': isArabic 
+        'topPlaces':
+            isArabic ? ['الجبال', 'البحر', 'جزر فرسان'] : ['Mountains', 'Sea', 'Farasan Islands'],
+        'activities': isArabic
             ? {
                 'طبيعة': ['استوائية'],
                 'بحر': ['رحلات'],
@@ -284,10 +297,10 @@ class AppConstants {
         'weather': '29°C',
         'weatherDesc': isArabic ? 'مشمس' : 'Sunny',
         'categories': ['nature', 'adventure'],
-        'topPlaces': isArabic 
+        'topPlaces': isArabic
             ? ['الشواطئ البكر', 'الشعاب المرجانية', 'الحياة البحرية']
             : ['Pristine Beaches', 'Coral Reefs', 'Marine Life'],
-        'activities': isArabic 
+        'activities': isArabic
             ? {
                 'بحر': ['غوص', 'سنوركل'],
                 'مغامرة': ['قوارب'],
@@ -302,7 +315,8 @@ class AppConstants {
       {
         'id': 'alula',
         'name': isArabic ? l10n.cityAlUla : 'AlUla',
-        'image': 'https://imgs.search.brave.com/3ohePEn2eXWVmhzPiKjxe0F-lyEUvyHpXl_x4OX5FAA/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9jbXMu/ZmFjdG1hZ2F6aW5l/cy5jb20vd3AtY29u/dGVudC91cGxvYWRz/LzIwMjQvMDMvRWxl/cGhhbnQtUm9jay1B/bFVsYS5qcGVn',
+        'image':
+            'https://imgs.search.brave.com/3ohePEn2eXWVmhzPiKjxe0F-lyEUvyHpXl_x4OX5FAA/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9jbXMu/ZmFjdG1hZ2F6aW5l/cy5jb20vd3AtY29u/dGVudC91cGxvYWRz/LzIwMjQvMDMvRWxl/cGhhbnQtUm9jay1B/bFVsYS5qcGVn',
         'desc': isArabic ? l10n.alUlaDesc : 'Historic Oasis.',
         'location': isArabic ? l10n.locationAlUla : 'Northwestern Saudi Arabia',
         'region': 'northwestern',
@@ -310,10 +324,10 @@ class AppConstants {
         'weather': '28°C',
         'weatherDesc': isArabic ? 'صافي' : 'Clear',
         'categories': ['adventure', 'luxury'],
-        'topPlaces': isArabic 
+        'topPlaces': isArabic
             ? ['مدائن صالح (العلا)', 'صخرة الفيل', 'الواحات']
             : ['Madain Salih', 'Elephant Rock', 'Oases'],
-        'activities': isArabic 
+        'activities': isArabic
             ? {
                 'مغامرة': ['منطاد'],
                 'استكشاف': ['آثار وصحاري'],
@@ -328,7 +342,8 @@ class AppConstants {
       {
         'id': 'mecca',
         'name': isArabic ? l10n.cityMecca : 'Mecca',
-        'image': 'https://imgs.search.brave.com/PnK0zW92qAFCLJM77Xi8cfkUQvjTKraHSk1GgSRY-0c/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9wbmcu/cG5ndHJlZS5jb20v/dGh1bWJfYmFjay9m/aDI2MC9iYWNrZ3Jv/dW5kLzIwMjUwNzAz/L3BuZ3RyZWUtYWVy/aWFsLXZpZXctb2Yt/dGhlLWthYWJhLWlu/LW1l/Y2NhLWlsbHVt/aW5hdGVkLWF0LW5p/Z2h0LXN1cnJvdW5k/ZWQtaW1hZ2VfMTc0/NTY4NTAud2VicA',
+        'image':
+            'https://imgs.search.brave.com/PnK0zW92qAFCLJM77Xi8cfkUQvjTKraHSk1GgSRY-0c/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9wbmcu/cG5ndHJlZS5jb20v/dGh1bWJfYmFjay9m/aDI2MC9iYWNrZ3Jv/dW5kLzIwMjUwNzAz/L3BuZ3RyZWUtYWVy/aWFsLXZpZXctb2Yt/dGhlLWthYWJhLWlu/LW1l/Y2NhLWlsbHVt/aW5hdGVkLWF0LW5p/Z2h0LXN1cnJvdW5k/ZWQtaW1hZ2VfMTc0/NTY4NTAud2VicA',
         'desc': isArabic ? l10n.meccaDesc : 'The Holiest City.',
         'location': isArabic ? l10n.locationMecca : 'Western Saudi Arabia',
         'region': 'western',
@@ -336,10 +351,10 @@ class AppConstants {
         'weather': '35°C',
         'weatherDesc': isArabic ? 'حار' : 'Hot',
         'categories': ['religious'],
-        'topPlaces': isArabic 
+        'topPlaces': isArabic
             ? ['المسجد الحرام', 'برج الساعة', 'جبل النور']
             : ['Grand Mosque', 'Clock Tower', 'Jabal Al-Noor'],
-        'activities': isArabic 
+        'activities': isArabic
             ? {
                 'ديني': ['عمرة', 'طواف'],
                 'تسوق': ['أبراج البيت'],
@@ -354,7 +369,8 @@ class AppConstants {
       {
         'id': 'medina',
         'name': isArabic ? l10n.cityMedina : 'Medina',
-        'image': 'https://imgs.search.brave.com/Vw9LKhc4NRoutW76wWyEoda0MQ0xpuZpXb1C72EWl_o/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9zdGF0/aWMuc3JwY2RpZ2l0/YWwuY29tL3N0eWxl/cy8xMDM3eGF1dG8v/cHVibGljLzIwMTQv/MDQvMDEvMTM5NTg0/OTgzODgzNDI2Nzgw/MC5qcGcud2VicA',
+        'image':
+            'https://imgs.search.brave.com/Vw9LKhc4NRoutW76wWyEoda0MQ0xpuZpXb1C72EWl_o/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9zdGF0/aWMuc3JwY2RpZ2l0/YWwuY29tL3N0eWxl/cy8xMDM3eGF1dG8v/cHVibGljLzIwMTQv/MDQvMDEvMTM5NTg0/OTgzODgzNDI2Nzgw/MC5qcGcud2VicA',
         'desc': isArabic ? l10n.medinaDesc : 'The City of the Prophet.',
         'location': isArabic ? l10n.locationMedina : 'Western Saudi Arabia north of Mecca',
         'region': 'western',
@@ -362,10 +378,10 @@ class AppConstants {
         'weather': '30°C',
         'weatherDesc': isArabic ? 'صافي' : 'Clear',
         'categories': ['religious'],
-        'topPlaces': isArabic 
+        'topPlaces': isArabic
             ? ['المسجد النبوي', 'مسجد قباء', 'جبل أحد']
             : ['Prophet\'s Mosque', 'Quba Mosque', 'Mount Uhud'],
-        'activities': isArabic 
+        'activities': isArabic
             ? {
                 'ديني': ['زيارة المسجد النبوي'],
                 'تاريخ': ['مواقع إسلامية'],
