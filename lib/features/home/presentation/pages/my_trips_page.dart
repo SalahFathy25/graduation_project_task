@@ -137,7 +137,10 @@ class _MyTripsPageState extends State<MyTripsPage> {
                             SizedBox(
                               width: double.infinity,
                               child: ElevatedButton.icon(
-                                onPressed: () => Navigator.pop(context),
+                                onPressed: () {
+                                  context.read<HomeCubit>().updateIndex(1);
+                                  Navigator.pop(context);
+                                },
                                 icon: const Icon(Icons.search_rounded),
                                 label: Text(
                                   l10n.exploreDestinations,

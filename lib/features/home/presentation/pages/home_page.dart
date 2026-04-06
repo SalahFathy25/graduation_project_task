@@ -409,47 +409,72 @@ class _HomePageState extends State<HomePage> {
   }
 
   Widget _buildModernBottomNav(BuildContext context, int currentIndex, AppLocalizations l10n) {
-    return BottomAppBar(
-      shape: const CircularNotchedRectangle(),
-      notchMargin: 10,
-      elevation: 20,
-      child: SizedBox(
-        height: 60,
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
-          children: [
-            _navItem(context, 0, Icons.home_rounded, l10n.home, currentIndex == 0),
-            _navItem(context, 1, Icons.explore_rounded, l10n.explore, currentIndex == 1),
-            const SizedBox(width: 40), // Space for FAB
-            _navItem(context, 2, Icons.bookmark_rounded, l10n.favorites, currentIndex == 2),
-            _navItem(context, 3, Icons.person_rounded, l10n.profile, currentIndex == 3),
-          ],
+    return Container(
+      decoration: BoxDecoration(
+        color: Colors.white,
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black.withOpacity(0.1),
+            blurRadius: 20,
+            offset: const Offset(0, -5),
+          ),
+        ],
+      ),
+      child: SafeArea(
+        child: Container(
+          height: 70,
+          padding: const EdgeInsets.symmetric(horizontal: 12),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            children: [
+              _navItem(context, 0, Icons.home_rounded, Icons.home_outlined, l10n.home, currentIndex == 0),
+              _navItem(context, 1, Icons.explore_rounded, Icons.explore_outlined, l10n.explore, currentIndex == 1),
+              const SizedBox(width: 48), // Space for FAB
+              _navItem(context, 2, Icons.bookmark_rounded, Icons.bookmark_outline_rounded, l10n.favorites, currentIndex == 2),
+              _navItem(context, 3, Icons.person_rounded, Icons.person_outline_rounded, l10n.profile, currentIndex == 3),
+            ],
+          ),
         ),
       ),
     );
   }
 
-  Widget _navItem(BuildContext context, int index, IconData icon, String label, bool isSelected) {
-    return InkWell(
-      onTap: () {
-        context.read<HomeCubit>().updateIndex(index);
-      },
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          Icon(
-            icon,
-            color: isSelected ? AppColors.primary : Colors.grey[400],
+  Widget _navItem(BuildContext context, int index, IconData selectedIcon, IconData unselectedIcon, String label, bool isSelected) {
+    return Expanded(
+      child: GestureDetector(
+        onTap: () => context.read<HomeCubit>().updateIndex(index),
+        behavior: HitTestBehavior.opaque,
+        child: AnimatedContainer(
+          duration: const Duration(milliseconds: 300),
+          curve: Curves.easeInOut,
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              AnimatedContainer(
+                duration: const Duration(milliseconds: 300),
+                padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                decoration: BoxDecoration(
+                  color: isSelected ? AppColors.primary.withOpacity(0.1) : Colors.transparent,
+                  borderRadius: BorderRadius.circular(20),
+                ),
+                child: Icon(
+                  isSelected ? selectedIcon : unselectedIcon,
+                  color: isSelected ? AppColors.primary : Colors.grey[400],
+                  size: 26,
+                ),
+              ),
+              const SizedBox(height: 4),
+              Text(
+                label,
+                style: GoogleFonts.almarai(
+                  fontSize: 11,
+                  color: isSelected ? AppColors.primary : Colors.grey[400],
+                  fontWeight: isSelected ? FontWeight.w800 : FontWeight.w500,
+                ),
+              ),
+            ],
           ),
-          Text(
-            label,
-            style: GoogleFonts.almarai(
-              fontSize: 10,
-              color: isSelected ? AppColors.primary : Colors.grey[400],
-              fontWeight: isSelected ? FontWeight.bold : FontWeight.normal,
-            ),
-          ),
-        ],
+        ),
       ),
     );
   }

@@ -30,41 +30,65 @@ class _BudgetBottomSheetState extends State<BudgetBottomSheet> {
 
     return Container(
       padding: EdgeInsets.only(
-        bottom: MediaQuery.of(context).viewInsets.bottom + 20,
-        top: 20,
-        left: 20,
-        right: 20,
+        bottom: MediaQuery.of(context).viewInsets.bottom + 24,
+        top: 12,
+        left: 24,
+        right: 24,
       ),
       decoration: const BoxDecoration(
         color: Colors.white,
-        borderRadius: BorderRadius.vertical(top: Radius.circular(30)),
+        borderRadius: BorderRadius.vertical(top: Radius.circular(32)),
+        boxShadow: [
+          BoxShadow(
+            color: Color(0x1A000000),
+            blurRadius: 20,
+            offset: Offset(0, -5),
+          ),
+        ],
       ),
       child: Column(
         mainAxisSize: MainAxisSize.min,
-        crossAxisAlignment: CrossAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.center,
         children: [
+          // Drag Handle
+          Container(
+            width: 40,
+            height: 4,
+            decoration: BoxDecoration(
+              color: Colors.grey[300],
+              borderRadius: BorderRadius.circular(2),
+            ),
+          ),
+          const SizedBox(height: 24),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(
                 l10n.manageTripBudget,
                 style: GoogleFonts.almarai(
-                  fontSize: 18,
-                  fontWeight: FontWeight.bold,
+                  fontSize: 20,
+                  fontWeight: FontWeight.w800,
                   color: AppColors.textPrimary,
                 ),
               ),
-              IconButton(
-                onPressed: () => Navigator.pop(context),
-                icon: const Icon(Icons.close),
+              Container(
+                decoration: BoxDecoration(
+                  color: Colors.grey[100],
+                  shape: BoxShape.circle,
+                ),
+                child: IconButton(
+                  onPressed: () => Navigator.pop(context),
+                  icon: const Icon(Icons.close, size: 20, color: AppColors.textSecondary),
+                ),
               ),
             ],
           ),
-          const SizedBox(height: 20),
+          const SizedBox(height: 28),
           _buildBudgetField(l10n.totalBudget, _totalController, Icons.account_balance_wallet_rounded, l10n.riyal),
-          const SizedBox(height: 24),
+          const SizedBox(height: 32),
           SizedBox(
             width: double.infinity,
+            height: 56,
             child: ElevatedButton(
               onPressed: () {
                 final budget = double.tryParse(_totalController.text) ?? 0.0;
@@ -74,11 +98,16 @@ class _BudgetBottomSheetState extends State<BudgetBottomSheet> {
               style: ElevatedButton.styleFrom(
                 backgroundColor: AppColors.primary,
                 foregroundColor: Colors.white,
-                padding: const EdgeInsets.symmetric(vertical: 16),
+                elevation: 0,
+                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
               ),
               child: Text(
                 l10n.save,
-                style: GoogleFonts.almarai(fontWeight: FontWeight.bold, fontSize: 16),
+                style: GoogleFonts.almarai(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 16,
+                  letterSpacing: 0.5,
+                ),
               ),
             ),
           ),
@@ -88,20 +117,47 @@ class _BudgetBottomSheetState extends State<BudgetBottomSheet> {
   }
 
   Widget _buildBudgetField(String label, TextEditingController controller, IconData icon, String suffix) {
-    return Padding(
-      padding: const EdgeInsets.only(bottom: 16),
-      child: TextField(
-        controller: controller,
-        decoration: InputDecoration(
-          labelText: label,
-          labelStyle: GoogleFonts.almarai(color: AppColors.textSecondary, fontSize: 14),
-          prefixIcon: Icon(icon, color: AppColors.primary),
-          suffixText: suffix,
-          suffixStyle: GoogleFonts.almarai(color: AppColors.textSecondary),
-          border: OutlineInputBorder(borderRadius: BorderRadius.circular(15)),
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(
+          label,
+          style: GoogleFonts.almarai(
+            fontSize: 14,
+            fontWeight: FontWeight.bold,
+            color: AppColors.textSecondary,
+          ),
         ),
-        keyboardType: TextInputType.number,
-      ),
+        const SizedBox(height: 8),
+        TextField(
+          controller: controller,
+          style: GoogleFonts.almarai(fontSize: 16, fontWeight: FontWeight.w600),
+          decoration: InputDecoration(
+            prefixIcon: Icon(icon, color: AppColors.primary, size: 22),
+            suffixText: suffix,
+            suffixStyle: GoogleFonts.almarai(
+              color: AppColors.textSecondary,
+              fontWeight: FontWeight.bold,
+            ),
+            filled: true,
+            fillColor: Colors.grey[50],
+            contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
+            border: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(16),
+              borderSide: BorderSide.none,
+            ),
+            enabledBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(16),
+              borderSide: BorderSide(color: Colors.grey[200]!, width: 1),
+            ),
+            focusedBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(16),
+              borderSide: const BorderSide(color: AppColors.primary, width: 1.5),
+            ),
+          ),
+          keyboardType: TextInputType.number,
+        ),
+      ],
     );
   }
 }

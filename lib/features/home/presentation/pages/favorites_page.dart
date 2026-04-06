@@ -22,7 +22,7 @@ class FavoritesPage extends StatefulWidget {
 class _FavoritesPageState extends State<FavoritesPage> {
   String searchQuery = '';
   String? selectedPurpose;
-  int? selectedPriceCategory; 
+  int? selectedPriceCategory;
   SortOption currentSort = SortOption.name;
 
   @override
@@ -60,7 +60,7 @@ class _FavoritesPageState extends State<FavoritesPage> {
             physics: const BouncingScrollPhysics(),
             slivers: [
               _buildModernAppBar(l10n, isArabic),
-              
+
               if (state.favorites.isNotEmpty)
                 SliverToBoxAdapter(
                   child: Padding(
@@ -75,7 +75,7 @@ class _FavoritesPageState extends State<FavoritesPage> {
                 SliverFillRemaining(hasScrollBody: false, child: _buildNoResultsState(isArabic))
               else
                 _buildFavoritesGrid(filteredList),
-              
+
               const SliverToBoxAdapter(child: SizedBox(height: 100)),
             ],
           );
@@ -127,15 +127,6 @@ class _FavoritesPageState extends State<FavoritesPage> {
                     Color(0xFF005C2B), // Darker Saudi Green
                   ],
                 ),
-              ),
-            ),
-            // Pattern Overlay (Optional - but adds luxury)
-            Opacity(
-              opacity: 0.1,
-              child: Image.asset(
-                'assets/images/pattern.png', // Replace with your pattern if available
-                fit: BoxFit.cover,
-                errorBuilder: (context, error, stackTrace) => const SizedBox(),
               ),
             ),
             // Content
@@ -392,7 +383,7 @@ class _FavoritesPageState extends State<FavoritesPage> {
         final l10n = AppLocalizations.of(context)!;
         final isArabic = Localizations.localeOf(context).languageCode == 'ar';
         final cities = AppConstants.getCities(l10n, isArabic);
-        
+
         // Check if this attraction is actually a city
         final cityData = cities.cast<Map<String, dynamic>?>().firstWhere(
           (c) => c?['id'] == attraction.id,
@@ -551,7 +542,9 @@ class _FavoritesPageState extends State<FavoritesPage> {
         ),
         const SizedBox(height: 40),
         ElevatedButton(
-          onPressed: () {},
+          onPressed: () {
+            context.read<HomeCubit>().updateIndex(1);
+          },
           style: ElevatedButton.styleFrom(
             backgroundColor: AppColors.primary,
             foregroundColor: Colors.white,
