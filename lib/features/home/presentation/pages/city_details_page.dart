@@ -1,3 +1,4 @@
+import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -40,7 +41,6 @@ class _CityDetailsPageState extends State<CityDetailsPage> {
       return cityActivities.map((key, value) => MapEntry(key, List<String>.from(value)));
     }
 
-    // Fallback to original logic if no specific activities found
     bool isArabic = l10n.localeName == 'ar';
     String purpose = _userTravelPurpose ?? (isArabic ? 'عائلة' : 'Family');
     
@@ -74,82 +74,82 @@ class _CityDetailsPageState extends State<CityDetailsPage> {
     return Scaffold(
       backgroundColor: AppColors.background,
       body: CustomScrollView(
+        physics: const BouncingScrollPhysics(),
         slivers: [
-          // 1. Dynamic Header
           SliverAppBar(
-            expandedHeight: 350.0,
+            expandedHeight: 400.0,
             pinned: true,
+            stretch: true,
             backgroundColor: AppColors.primary,
-            leading: Container(
-              margin: const EdgeInsets.all(8),
-              decoration: const BoxDecoration(
-                color: Colors.black26,
-                shape: BoxShape.circle,
-              ),
-              child: IconButton(
-                icon: const Icon(Icons.arrow_back, color: Colors.white, size: 20),
-                onPressed: () => Navigator.pop(context),
-              ),
+            elevation: 0,
+            leading: _buildCircularButton(
+              icon: Icons.arrow_back_ios_new_rounded,
+              onPressed: () => Navigator.pop(context),
             ),
             actions: [
               BlocBuilder<HomeCubit, HomeState>(
                 builder: (context, state) {
-                  final isFavorite = state.favorites.any((fav) => fav.name == widget.city['name']);
-                  return Container(
-                    margin: const EdgeInsets.all(8),
-                    decoration: const BoxDecoration(
-                      color: Colors.black26,
-                      shape: BoxShape.circle,
-                    ),
-                    child: IconButton(
-                      icon: Icon(
-                        isFavorite ? Icons.bookmark_rounded : Icons.bookmark_border_rounded,
-                        color: isFavorite ? Colors.orange : Colors.white,
-                        size: 20,
-                      ),
-                      onPressed: () {
-                        final cityAttraction = Attraction(
-                          id: widget.city['name'],
-                          name: widget.city['name'],
-                          description: widget.city['desc'] ?? '',
-                          imageUrl: widget.city['image'] ?? '',
-                          location: widget.city['location'] ?? widget.city['name'],
-                          estimatedBudgetPerDay: 0,
-                          priceCategory: 2,
-                          suitablePurposes: const [],
-                        );
-                        context.read<HomeCubit>().toggleFavorite(cityAttraction);
-                      },
-                    ),
+                  final isFavorite = state.favorites.any((fav) => fav.id == widget.city['id']);
+                  return _buildCircularButton(
+                    icon: isFavorite ? Icons.bookmark_rounded : Icons.bookmark_border_rounded,
+                    iconColor: isFavorite ? AppColors.secondary : Colors.white,
+                    onPressed: () {
+                      final cityAttraction = Attraction(
+                        id: widget.city['id'],
+                        name: widget.city['name'],
+                        description: widget.city['desc'] ?? '',
+                        imageUrl: widget.city['image'] ?? '',
+                        location: widget.city['location'] ?? widget.city['name'],
+                        estimatedBudgetPerDay: 0,
+                        priceCategory: 2,
+                        suitablePurposes: const [],
+                      );
+                      context.read<HomeCubit>().toggleFavorite(cityAttraction);
+                    },
                   );
                 },
               ),
+              const SizedBox(width: 8),
             ],
             flexibleSpace: FlexibleSpaceBar(
-              title: Text(
-                widget.city['name'],
-                style: GoogleFonts.almarai(
-                  color: Colors.white,
-                  fontWeight: FontWeight.bold,
-                  fontSize: 18,
-                ),
+              stretchModes: const [StretchMode.zoomBackground, StretchMode.blurBackground],
+              title: Column(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  Text(
+                    widget.city['name'],
+                    style: GoogleFonts.almarai(
+                      color: Colors.white,
+                      fontWeight: FontWeight.w800,
+                      fontSize: 22,
+                      shadows: [Shadow(color: Colors.black.withOpacity(0.5), blurRadius: 10)],
+                    ),
+                  ),
+                  const SizedBox(height: 4),
+                  Container(width: 40, height: 3, decoration: BoxDecoration(color: AppColors.secondary, borderRadius: BorderRadius.circular(2))),
+                  const SizedBox(height: 45),
+                ],
               ),
               centerTitle: true,
-              titlePadding: const EdgeInsets.only(bottom: 42),
               background: Stack(
                 fit: StackFit.expand,
                 children: [
-                  Image.network(widget.city['image'], fit: BoxFit.cover),
-                  Container(
+                  Hero(
+                    tag: 'city_image_${widget.city['name']}',
+                    child: Image.network(widget.city['image'], fit: BoxFit.cover),
+                  ),
+                  DecoratedBox(
                     decoration: BoxDecoration(
                       gradient: LinearGradient(
                         begin: Alignment.topCenter,
                         end: Alignment.bottomCenter,
                         colors: [
-                          Colors.black.withOpacity(0.1),
+                          Colors.black.withOpacity(0.3),
                           Colors.transparent,
-                          Colors.black.withOpacity(0.8),
+                          Colors.black.withOpacity(0.7),
+                          Colors.black.withOpacity(0.9),
                         ],
+                        stops: const [0.0, 0.4, 0.8, 1.0],
                       ),
                     ),
                   ),
@@ -163,6 +163,9 @@ class _CityDetailsPageState extends State<CityDetailsPage> {
                 decoration: BoxDecoration(
                   color: AppColors.background,
                   borderRadius: const BorderRadius.vertical(top: Radius.circular(30)),
+                  boxShadow: [
+                    BoxShadow(color: Colors.black.withOpacity(0.05), offset: const Offset(0, -5), blurRadius: 10)
+                  ],
                 ),
               ),
             ),
@@ -170,64 +173,39 @@ class _CityDetailsPageState extends State<CityDetailsPage> {
 
           SliverToBoxAdapter(
             child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 24),
+              padding: const EdgeInsets.symmetric(horizontal: 20),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  // 2. Weather & Location Card
-                  _buildCityInfoCard(l10n),
-                  const SizedBox(height: 24),
+                  _buildLuxuryInfoCard(l10n),
+                  const SizedBox(height: 32),
 
-                  // 3. Description
-                  Text(
-                    l10n.aboutCity,
-                    style: GoogleFonts.almarai(
-                      fontSize: 20,
-                      fontWeight: FontWeight.bold,
-                      color: AppColors.primary,
-                    ),
-                  ),
-                  const SizedBox(height: 12),
+                  _buildSectionTitle(l10n.aboutCity),
+                  const SizedBox(height: 16),
                   Text(
                     widget.city['desc'],
                     style: GoogleFonts.almarai(
-                      fontSize: 15,
-                      color: AppColors.textSecondary,
-                      height: 1.6,
+                      fontSize: 16,
+                      color: AppColors.textPrimary.withOpacity(0.8),
+                      height: 1.8,
                     ),
                   ),
-                  const SizedBox(height: 24),
+                  const SizedBox(height: 32),
 
-                  // 4. Top Places Section
                   if (topPlaces.isNotEmpty) ...[
-                    Text(
-                      l10n.topPlaces,
-                      style: GoogleFonts.almarai(
-                        fontSize: 20,
-                        fontWeight: FontWeight.bold,
-                        color: AppColors.primary,
-                      ),
-                    ),
-                    const SizedBox(height: 12),
-                    ...topPlaces.map((place) => _buildPlaceItem(place)).toList(),
-                    const SizedBox(height: 24),
+                    _buildSectionTitle(l10n.topPlaces),
+                    const SizedBox(height: 16),
+                    ...topPlaces.map((place) => _buildLuxuryPlaceItem(place)).toList(),
+                    const SizedBox(height: 32),
                   ],
 
-                  // 5. Activities Section (Dropdowns)
                   if (activities.isNotEmpty) ...[
-                    Text(
-                      l10n.activities,
-                      style: GoogleFonts.almarai(
-                        fontSize: 20,
-                        fontWeight: FontWeight.bold,
-                        color: AppColors.primary,
-                      ),
-                    ),
-                    const SizedBox(height: 12),
-                    ...activities.entries.map((entry) => _buildExpandableList(entry.key, entry.value)).toList(),
+                    _buildSectionTitle(l10n.activities),
+                    const SizedBox(height: 16),
+                    ...activities.entries.map((entry) => _buildLuxuryExpandableList(entry.key, entry.value)).toList(),
                   ],
 
-                  const SizedBox(height: 120),
+                  const SizedBox(height: 140),
                 ],
               ),
             ),
@@ -235,96 +213,114 @@ class _CityDetailsPageState extends State<CityDetailsPage> {
         ],
       ),
 
-      floatingActionButton: Container(
-        padding: const EdgeInsets.symmetric(horizontal: 24),
-        width: double.infinity,
-        height: 60,
-        child: ElevatedButton(
-
-          onPressed: () => _showCreateTrip(context, widget.city['name']  , l10n),
-          style: ElevatedButton.styleFrom(
-            backgroundColor: AppColors.primary,
-            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
-            elevation: 8,
-            shadowColor: AppColors.primary.withOpacity(0.5),
-          ),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              const Icon(Icons.auto_awesome_rounded, color: Colors.white),
-              const SizedBox(width: 12),
-              Text(
-                l10n.quickPlan,
-                style: GoogleFonts.almarai(
-                  fontSize: 16,
-                  fontWeight: FontWeight.bold,
-                  color: Colors.white,
-                ),
-              ),
-            ],
-          ),
-        ),
-      ),
+      floatingActionButton: _buildPremiumFAB(context, l10n),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
     );
   }
 
-  Widget _buildPlaceItem(String place) {
+  Widget _buildCircularButton({required IconData icon, required VoidCallback onPressed, Color iconColor = Colors.white}) {
     return Container(
-      margin: const EdgeInsets.only(bottom: 8),
-      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+      margin: const EdgeInsets.all(8),
       decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.circular(12),
-        border: Border.all(color: Colors.grey.withOpacity(0.1)),
+        color: Colors.white.withOpacity(0.2),
+        shape: BoxShape.circle,
       ),
-      child: Row(
-        children: [
-          const Icon(Icons.star_rounded, color: Colors.amber, size: 20),
-          const SizedBox(width: 12),
-          Expanded(
-            child: Text(
-              place,
-              style: GoogleFonts.almarai(fontSize: 14, color: AppColors.textPrimary),
-            ),
+      child: ClipOval(
+        child: BackdropFilter(
+          filter: ImageFilter.blur(sigmaX: 5, sigmaY: 5),
+          child: IconButton(
+            icon: Icon(icon, color: iconColor, size: 20),
+            onPressed: onPressed,
           ),
-        ],
+        ),
       ),
     );
   }
 
-  Widget _buildCityInfoCard(AppLocalizations l10n) {
+  Widget _buildSectionTitle(String title) {
+    return Row(
+      children: [
+        Container(
+          width: 4,
+          height: 24,
+          decoration: BoxDecoration(
+            color: AppColors.primary,
+            borderRadius: BorderRadius.circular(2),
+          ),
+        ),
+        const SizedBox(width: 12),
+        Text(
+          title,
+          style: GoogleFonts.almarai(
+            fontSize: 22,
+            fontWeight: FontWeight.w800,
+            color: AppColors.textPrimary,
+            letterSpacing: 0.5,
+          ),
+        ),
+      ],
+    );
+  }
+
+  Widget _buildLuxuryInfoCard(AppLocalizations l10n) {
     return Container(
-      padding: const EdgeInsets.all(20),
+      padding: const EdgeInsets.all(24),
       decoration: BoxDecoration(
         color: Colors.white,
-        borderRadius: BorderRadius.circular(25),
+        borderRadius: BorderRadius.circular(24),
         boxShadow: [
-          BoxShadow(color: Colors.black.withOpacity(0.05), blurRadius: 15, offset: const Offset(0, 5)),
+          BoxShadow(
+            color: AppColors.primary.withOpacity(0.08),
+            blurRadius: 30,
+            offset: const Offset(0, 10),
+          ),
         ],
       ),
       child: Column(
         children: [
           Row(
             children: [
-              const Icon(Icons.location_on_rounded, color: AppColors.primary),
-              const SizedBox(width: 12),
+              _buildInfoIcon(Icons.location_on_rounded, AppColors.primary),
+              const SizedBox(width: 16),
               Expanded(
-                child: Text(
-                  widget.city['location'],
-                  style: GoogleFonts.almarai(fontSize: 14, color: AppColors.textPrimary),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      'الموقع',
+                      style: GoogleFonts.almarai(fontSize: 12, color: AppColors.textSecondary, fontWeight: FontWeight.bold),
+                    ),
+                    Text(
+                      widget.city['location'],
+                      style: GoogleFonts.almarai(fontSize: 16, color: AppColors.textPrimary, fontWeight: FontWeight.w600),
+                    ),
+                  ],
                 ),
               ),
             ],
           ),
-          const Divider(height: 24),
+          Padding(
+            padding: const EdgeInsets.symmetric(vertical: 16),
+            child: Divider(color: Colors.grey.withOpacity(0.1), thickness: 1),
+          ),
           Row(
             children: [
-              const Icon(Icons.wb_sunny_rounded, color: Colors.orange),
-              const SizedBox(width: 12),
-              Text(
-                '${widget.city['weather']} - ${widget.city['weatherDesc']}',
-                style: GoogleFonts.almarai(fontSize: 14, color: AppColors.textPrimary),
+              _buildInfoIcon(Icons.wb_sunny_rounded, Colors.orange),
+              const SizedBox(width: 16),
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      l10n.weatherToday,
+                      style: GoogleFonts.almarai(fontSize: 12, color: AppColors.textSecondary, fontWeight: FontWeight.bold),
+                    ),
+                    Text(
+                      '${widget.city['weather']} - ${widget.city['weatherDesc']}',
+                      style: GoogleFonts.almarai(fontSize: 16, color: AppColors.textPrimary, fontWeight: FontWeight.w600),
+                    ),
+                  ],
+                ),
               ),
             ],
           ),
@@ -333,23 +329,127 @@ class _CityDetailsPageState extends State<CityDetailsPage> {
     );
   }
 
-  Widget _buildExpandableList(String title, List<String> items) {
+  Widget _buildInfoIcon(IconData icon, Color color) {
+    return Container(
+      padding: const EdgeInsets.all(10),
+      decoration: BoxDecoration(
+        color: color.withOpacity(0.1),
+        borderRadius: BorderRadius.circular(12),
+      ),
+      child: Icon(icon, color: color, size: 24),
+    );
+  }
+
+  Widget _buildLuxuryPlaceItem(String place) {
+    return Container(
+      margin: const EdgeInsets.only(bottom: 12),
+      padding: const EdgeInsets.all(16),
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(16),
+        border: Border.all(color: AppColors.primary.withOpacity(0.05)),
+        boxShadow: [
+          BoxShadow(color: Colors.black.withOpacity(0.02), blurRadius: 10, offset: const Offset(0, 4)),
+        ],
+      ),
+      child: Row(
+        children: [
+          const Icon(Icons.stars_rounded, color: AppColors.secondary, size: 24),
+          const SizedBox(width: 16),
+          Expanded(
+            child: Text(
+              place,
+              style: GoogleFonts.almarai(fontSize: 15, fontWeight: FontWeight.w600, color: AppColors.textPrimary),
+            ),
+          ),
+          Icon(Icons.arrow_forward_ios_rounded, size: 14, color: Colors.grey.withOpacity(0.5)),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildLuxuryExpandableList(String title, List<String> items) {
     return Container(
       margin: const EdgeInsets.only(bottom: 16),
       decoration: BoxDecoration(
         color: Colors.white,
-        borderRadius: BorderRadius.circular(15),
-        border: Border.all(color: Colors.grey.withOpacity(0.1)),
+        borderRadius: BorderRadius.circular(20),
+        border: Border.all(color: AppColors.primary.withOpacity(0.05)),
+        boxShadow: [
+          BoxShadow(color: Colors.black.withOpacity(0.02), blurRadius: 10, offset: const Offset(0, 4)),
+        ],
       ),
-      child: ExpansionTile(
-        title: Text(
-          title,
-          style: GoogleFonts.almarai(fontWeight: FontWeight.bold, fontSize: 16, color: AppColors.primary),
+      child: Theme(
+        data: Theme.of(context).copyWith(dividerColor: Colors.transparent),
+        child: ExpansionTile(
+          iconColor: AppColors.primary,
+          collapsedIconColor: AppColors.textSecondary,
+          tilePadding: const EdgeInsets.symmetric(horizontal: 20, vertical: 8),
+          title: Text(
+            title,
+            style: GoogleFonts.almarai(fontWeight: FontWeight.w700, fontSize: 17, color: AppColors.primary),
+          ),
+          children: items.map((item) => Container(
+            margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 4),
+            decoration: BoxDecoration(
+              color: AppColors.background,
+              borderRadius: BorderRadius.circular(12),
+            ),
+            child: ListTile(
+              leading: const Icon(Icons.check_circle_rounded, color: AppColors.secondary, size: 20),
+              title: Text(item, style: GoogleFonts.almarai(fontSize: 14, fontWeight: FontWeight.w500)),
+            ),
+          )).toList(),
         ),
-        children: items.map((item) => ListTile(
-          leading: const Icon(Icons.check_circle_outline, color: AppColors.secondary, size: 20),
-          title: Text(item, style: GoogleFonts.almarai(fontSize: 14)),
-        )).toList(),
+      ),
+    );
+  }
+
+  Widget _buildPremiumFAB(BuildContext context, AppLocalizations l10n) {
+    return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 24),
+      width: double.infinity,
+      height: 65,
+      child: Container(
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(20),
+          boxShadow: [
+            BoxShadow(
+              color: AppColors.primary.withOpacity(0.3),
+              blurRadius: 20,
+              offset: const Offset(0, 10),
+            ),
+          ],
+          gradient: const LinearGradient(
+            colors: [AppColors.primary, Color(0xFF00642D)],
+            begin: Alignment.topLeft,
+            end: Alignment.bottomRight,
+          ),
+        ),
+        child: ElevatedButton(
+          onPressed: () => _showCreateTrip(context, widget.city['name'], l10n),
+          style: ElevatedButton.styleFrom(
+            backgroundColor: Colors.transparent,
+            shadowColor: Colors.transparent,
+            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+          ),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              const Icon(Icons.auto_awesome_rounded, color: AppColors.secondary, size: 28),
+              const SizedBox(width: 12),
+              Text(
+                l10n.quickPlan,
+                style: GoogleFonts.almarai(
+                  fontSize: 18,
+                  fontWeight: FontWeight.w800,
+                  color: Colors.white,
+                  letterSpacing: 1,
+                ),
+              ),
+            ],
+          ),
+        ),
       ),
     );
   }

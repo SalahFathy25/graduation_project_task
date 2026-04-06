@@ -353,11 +353,11 @@ class _ExplorePageState extends State<ExplorePage> {
                     right: 10,
                     child: BlocBuilder<HomeCubit, HomeState>(
                       builder: (context, state) {
-                        final isFavorite = state.favorites.any((fav) => fav.name == city['name']);
+                        final isFavorite = state.favorites.any((fav) => fav.id == city['id']);
                         return GestureDetector(
                           onTap: () {
                             final attraction = Attraction(
-                              id: city['name'],
+                              id: city['id'],
                               name: city['name'],
                               description: city['desc'],
                               imageUrl: city['image'],

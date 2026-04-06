@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:graduation_project/core/theme/app_colors.dart';
+import 'package:graduation_project/core/utils/app_constants.dart';
+import 'package:graduation_project/features/home/presentation/pages/city_details_page.dart';
 import 'package:graduation_project/features/home/presentation/cubit/home_cubit.dart';
 import 'package:graduation_project/features/home/presentation/cubit/home_state.dart';
 import 'package:graduation_project/features/attractions/presentation/pages/attraction_details_page.dart';
@@ -386,10 +388,29 @@ class _FavoritesPageState extends State<FavoritesPage> {
 
   Widget _buildFavoriteCard(BuildContext context, Attraction attraction) {
     return GestureDetector(
-      onTap: () => Navigator.push(
-        context,
-        MaterialPageRoute(builder: (context) => AttractionDetailsPage(attraction: attraction)),
-      ),
+      onTap: () {
+        final l10n = AppLocalizations.of(context)!;
+        final isArabic = Localizations.localeOf(context).languageCode == 'ar';
+        final cities = AppConstants.getCities(l10n, isArabic);
+        
+        // Check if this attraction is actually a city
+        final cityData = cities.cast<Map<String, dynamic>?>().firstWhere(
+          (c) => c?['id'] == attraction.id,
+          orElse: () => null,
+        );
+
+        if (cityData != null) {
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => CityDetailsPage(city: cityData)),
+          );
+        } else {
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => AttractionDetailsPage(attraction: attraction)),
+          );
+        }
+      },
       child: Container(
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(25),
