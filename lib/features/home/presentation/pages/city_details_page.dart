@@ -35,44 +35,41 @@ class _CityDetailsPageState extends State<CityDetailsPage> {
   }
 
   Map<String, List<String>> _getActivities(AppLocalizations l10n) {
+    if (widget.city.containsKey('activities') && widget.city['activities'] is Map) {
+      final cityActivities = widget.city['activities'] as Map<String, dynamic>;
+      return cityActivities.map((key, value) => MapEntry(key, List<String>.from(value)));
+    }
+
+    // Fallback to original logic if no specific activities found
     bool isArabic = l10n.localeName == 'ar';
     String purpose = _userTravelPurpose ?? (isArabic ? 'عائلة' : 'Family');
-
-    // Simple logic for activities based on purpose
+    
     if (purpose == (isArabic ? 'مغامرة' : 'Adventure')) {
       return {
         l10n.activitiesForYou: isArabic
-          ? ['جيتسكي', 'رحلة بحرية', 'غوص', 'براشوت', 'تجربة التحليق بالمنطاد']
+          ? ['جيتسكي', 'رحلة بحرية', 'غوص', 'باراشوت', 'تجربة التحليق بالمنطاد']
           : ['Jet Ski', 'Sea Cruise', 'Diving', 'Parachute', 'Hot Air Balloon'],
-        l10n.placesToVisit: isArabic
-          ? ['الواجهة البحرية', 'الصحاري المفتوحة', 'الجبال الصخرية']
-          : ['Waterfront', 'Open Deserts', 'Rocky Mountains'],
-      };
-    } else if (purpose == (isArabic ? 'عمل' : 'Business')) {
-      return {
-        l10n.activitiesForYou: isArabic
-          ? ['مركز المؤتمرات', 'غرف اجتماعات فاخرة', 'أماكن العمل المشتركة']
-          : ['Convention Center', 'Luxury Meeting Rooms', 'Co-working Spaces'],
-        l10n.placesToVisit: isArabic
-          ? ['فنادق 5 نجوم', 'المركز المالي', 'المطاعم الراقية']
-          : ['5-Star Hotels', 'Financial Center', 'Fine Dining'],
-      };
-    } else {
-      return {
-        l10n.activitiesForYou: isArabic
-          ? ['جولة في المتاحف', 'زيارة مراكز التسوق', 'الحدائق العامة']
-          : ['Museum Tour', 'Shopping Mall Visit', 'Public Parks'],
-        l10n.placesToVisit: isArabic
-          ? ['المعالم التاريخية', 'المتنزهات الترفيهية', 'الأسواق الشعبية']
-          : ['Historical Landmarks', 'Theme Parks', 'Traditional Souks'],
       };
     }
+    return {
+      l10n.activitiesForYou: isArabic
+        ? ['جولة في المتاحف', 'زيارة مراكز التسوق', 'الحدائق العامة']
+        : ['Museum Tour', 'Shopping Mall Visit', 'Public Parks'],
+    };
+  }
+
+  List<String> _getTopPlaces(AppLocalizations l10n) {
+    if (widget.city.containsKey('topPlaces') && widget.city['topPlaces'] is List) {
+      return List<String>.from(widget.city['topPlaces']);
+    }
+    return [];
   }
 
   @override
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context)!;
     final activities = _getActivities(l10n);
+    final topPlaces = _getTopPlaces(l10n);
 
     return Scaffold(
       backgroundColor: AppColors.background,
@@ -187,7 +184,7 @@ class _CityDetailsPageState extends State<CityDetailsPage> {
                     style: GoogleFonts.almarai(
                       fontSize: 20,
                       fontWeight: FontWeight.bold,
-                      color: AppColors.textPrimary,
+                      color: AppColors.primary,
                     ),
                   ),
                   const SizedBox(height: 12),
@@ -201,8 +198,34 @@ class _CityDetailsPageState extends State<CityDetailsPage> {
                   ),
                   const SizedBox(height: 24),
 
-                  // 4. Dropdown / Expandable Activities
-                  ...activities.entries.map((entry) => _buildExpandableList(entry.key, entry.value)).toList(),
+                  // 4. Top Places Section
+                  if (topPlaces.isNotEmpty) ...[
+                    Text(
+                      l10n.topPlaces,
+                      style: GoogleFonts.almarai(
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold,
+                        color: AppColors.primary,
+                      ),
+                    ),
+                    const SizedBox(height: 12),
+                    ...topPlaces.map((place) => _buildPlaceItem(place)).toList(),
+                    const SizedBox(height: 24),
+                  ],
+
+                  // 5. Activities Section (Dropdowns)
+                  if (activities.isNotEmpty) ...[
+                    Text(
+                      l10n.activities,
+                      style: GoogleFonts.almarai(
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold,
+                        color: AppColors.primary,
+                      ),
+                    ),
+                    const SizedBox(height: 12),
+                    ...activities.entries.map((entry) => _buildExpandableList(entry.key, entry.value)).toList(),
+                  ],
 
                   const SizedBox(height: 120),
                 ],
@@ -211,6 +234,7 @@ class _CityDetailsPageState extends State<CityDetailsPage> {
           ),
         ],
       ),
+
       floatingActionButton: Container(
         padding: const EdgeInsets.symmetric(horizontal: 24),
         width: double.infinity,
@@ -242,6 +266,30 @@ class _CityDetailsPageState extends State<CityDetailsPage> {
         ),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
+    );
+  }
+
+  Widget _buildPlaceItem(String place) {
+    return Container(
+      margin: const EdgeInsets.only(bottom: 8),
+      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(12),
+        border: Border.all(color: Colors.grey.withOpacity(0.1)),
+      ),
+      child: Row(
+        children: [
+          const Icon(Icons.star_rounded, color: Colors.amber, size: 20),
+          const SizedBox(width: 12),
+          Expanded(
+            child: Text(
+              place,
+              style: GoogleFonts.almarai(fontSize: 14, color: AppColors.textPrimary),
+            ),
+          ),
+        ],
+      ),
     );
   }
 

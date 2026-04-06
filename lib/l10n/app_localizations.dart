@@ -425,71 +425,227 @@ abstract class AppLocalizations {
   /// **'Hail'**
   String get cityHail;
 
+  /// No description provided for @cityFarasan.
+  ///
+  /// In en, this message translates to:
+  /// **'Farasan Islands'**
+  String get cityFarasan;
+
+  /// No description provided for @cityNajran.
+  ///
+  /// In en, this message translates to:
+  /// **'Najran'**
+  String get cityNajran;
+
+  /// No description provided for @cityBaha.
+  ///
+  /// In en, this message translates to:
+  /// **'Al Baha'**
+  String get cityBaha;
+
+  /// No description provided for @cityNeom.
+  ///
+  /// In en, this message translates to:
+  /// **'NEOM'**
+  String get cityNeom;
+
+  /// No description provided for @cityJazan.
+  ///
+  /// In en, this message translates to:
+  /// **'Jazan'**
+  String get cityJazan;
+
   /// No description provided for @riyadhDesc.
   ///
   /// In en, this message translates to:
-  /// **'The capital of the Kingdom and its financial center, located in central Saudi Arabia and characterized by its cultural and entertainment diversity.'**
+  /// **'The capital and financial hub, known for its cultural diversity and global events.'**
   String get riyadhDesc;
 
   /// No description provided for @jeddahDesc.
   ///
   /// In en, this message translates to:
-  /// **'A coastal city located in western Saudi Arabia on the Red Sea coast, known as the Bride of the Red Sea.'**
+  /// **'The Bride of the Red Sea, a modern city blending ancient history with charming waterfronts.'**
   String get jeddahDesc;
 
   /// No description provided for @alUlaDesc.
   ///
   /// In en, this message translates to:
-  /// **'An open museum located in the northwest of the Kingdom, featuring historical landmarks dating back thousands of years.'**
+  /// **'An open museum featuring ancient civilizations\' ruins, Madain Salih, and green oases.'**
   String get alUlaDesc;
 
   /// No description provided for @abhaDesc.
   ///
   /// In en, this message translates to:
-  /// **'The City of Fog located in the south of the Kingdom, characterized by its cool weather and breathtaking green mountains.'**
+  /// **'The City of Fog, known for its cool weather, high mountains, and natural parks.'**
   String get abhaDesc;
 
   /// No description provided for @dammamDesc.
   ///
   /// In en, this message translates to:
-  /// **'A coastal city located in the east of the Kingdom, it is the main port on the Arabian Gulf.'**
+  /// **'An eastern coastal city, featuring calm beaches and waterfronts.'**
   String get dammamDesc;
 
   /// No description provided for @tabukDesc.
   ///
   /// In en, this message translates to:
-  /// **'Gateway to the North, characterized by its diverse terrain and ancient monuments.'**
+  /// **'Gateway to the North, known for its diverse terrain of mountains, valleys, and snowy areas.'**
   String get tabukDesc;
 
   /// No description provided for @medinaDesc.
   ///
   /// In en, this message translates to:
-  /// **'Taybah, home to the Prophet\'s Mosque and considered one of the holiest places.'**
+  /// **'The Enlightened City, a city of peace and home to the Prophet\'s Mosque.'**
   String get medinaDesc;
 
   /// No description provided for @meccaDesc.
   ///
   /// In en, this message translates to:
-  /// **'The Qibla of Muslims, home to the Grand Mosque and the Holy Kaaba.'**
+  /// **'The Holiest City, the Qibla of Muslims and home to the Grand Mosque and Kaaba.'**
   String get meccaDesc;
 
   /// No description provided for @taifDesc.
   ///
   /// In en, this message translates to:
-  /// **'Bride of Summer Resorts, characterized by its moderate weather and rose and fruit farms.'**
+  /// **'The Bride of Resorts, known for rose farms, moderate weather, and breathtaking mountains.'**
   String get taifDesc;
 
   /// No description provided for @khobarDesc.
   ///
   /// In en, this message translates to:
-  /// **'A modern city in the Eastern Province, characterized by its wonderful waterfront and King Fahd Causeway.'**
+  /// **'A modern city in the Eastern Province, famous for its corniche and luxury malls.'**
   String get khobarDesc;
 
   /// No description provided for @hailDesc.
   ///
   /// In en, this message translates to:
-  /// **'Bride of the North, famous for the generosity of its people and historical mountains such as Aja and Salma.'**
+  /// **'The Bride of the North, famous for its people\'s generosity and historic mountains.'**
   String get hailDesc;
+
+  /// No description provided for @farasanDesc.
+  ///
+  /// In en, this message translates to:
+  /// **'An archipelago of islands in the Red Sea, known for its pristine nature and coral reefs.'**
+  String get farasanDesc;
+
+  /// No description provided for @najranDesc.
+  ///
+  /// In en, this message translates to:
+  /// **'An ancient historical city famous for the Al-Ukhdood ruins and unique mud villages.'**
+  String get najranDesc;
+
+  /// No description provided for @bahaDesc.
+  ///
+  /// In en, this message translates to:
+  /// **'The Pearl of the Mountains, known for its dense forests, waterfalls, and archaeological villages.'**
+  String get bahaDesc;
+
+  /// No description provided for @neomDesc.
+  ///
+  /// In en, this message translates to:
+  /// **'The City of the Future, combining advanced technology with pristine beaches and mountains.'**
+  String get neomDesc;
+
+  /// No description provided for @jazanDesc.
+  ///
+  /// In en, this message translates to:
+  /// **'A coastal and mountainous city, the gateway to Farasan, known for its unique environmental diversity.'**
+  String get jazanDesc;
+
+  /// No description provided for @locationRiyadh.
+  ///
+  /// In en, this message translates to:
+  /// **'Central Saudi Arabia (Capital)'**
+  String get locationRiyadh;
+
+  /// No description provided for @locationJeddah.
+  ///
+  /// In en, this message translates to:
+  /// **'Western Saudi Arabia on the Red Sea'**
+  String get locationJeddah;
+
+  /// No description provided for @locationTaif.
+  ///
+  /// In en, this message translates to:
+  /// **'Western Saudi Arabia near Mecca'**
+  String get locationTaif;
+
+  /// No description provided for @locationNajran.
+  ///
+  /// In en, this message translates to:
+  /// **'Southern Saudi Arabia on the border with Yemen'**
+  String get locationNajran;
+
+  /// No description provided for @locationTabuk.
+  ///
+  /// In en, this message translates to:
+  /// **'Northern Saudi Arabia'**
+  String get locationTabuk;
+
+  /// No description provided for @locationBaha.
+  ///
+  /// In en, this message translates to:
+  /// **'Southwestern Saudi Arabia between Taif and Abha'**
+  String get locationBaha;
+
+  /// No description provided for @locationAbha.
+  ///
+  /// In en, this message translates to:
+  /// **'Southwestern Saudi Arabia (Asir Region)'**
+  String get locationAbha;
+
+  /// No description provided for @locationNeom.
+  ///
+  /// In en, this message translates to:
+  /// **'Northwestern Saudi Arabia (on the Red Sea)'**
+  String get locationNeom;
+
+  /// No description provided for @locationDammamKhobar.
+  ///
+  /// In en, this message translates to:
+  /// **'Eastern Saudi Arabia on the Arabian Gulf'**
+  String get locationDammamKhobar;
+
+  /// No description provided for @locationJazan.
+  ///
+  /// In en, this message translates to:
+  /// **'Southwestern Saudi Arabia'**
+  String get locationJazan;
+
+  /// No description provided for @locationFarasan.
+  ///
+  /// In en, this message translates to:
+  /// **'Southwestern Saudi Arabia (near Jazan)'**
+  String get locationFarasan;
+
+  /// No description provided for @locationAlUla.
+  ///
+  /// In en, this message translates to:
+  /// **'Northwestern Saudi Arabia'**
+  String get locationAlUla;
+
+  /// No description provided for @locationMecca.
+  ///
+  /// In en, this message translates to:
+  /// **'Western Saudi Arabia'**
+  String get locationMecca;
+
+  /// No description provided for @locationMedina.
+  ///
+  /// In en, this message translates to:
+  /// **'Western Saudi Arabia north of Mecca'**
+  String get locationMedina;
+
+  /// No description provided for @topPlaces.
+  ///
+  /// In en, this message translates to:
+  /// **'Top Places'**
+  String get topPlaces;
+
+  /// No description provided for @activities.
+  ///
+  /// In en, this message translates to:
+  /// **'Activities'**
+  String get activities;
 
   /// No description provided for @placesToVisit.
   ///

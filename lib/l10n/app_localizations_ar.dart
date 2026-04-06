@@ -174,37 +174,115 @@ class AppLocalizationsAr extends AppLocalizations {
   String get cityHail => 'حائل';
 
   @override
-  String get riyadhDesc => 'عاصمة المملكة ومركزها المالي، تقع في وسط السعودية وتتميز بتنوعها الثقافي والترفيهي.';
+  String get cityFarasan => 'جزر فرسان';
 
   @override
-  String get jeddahDesc => 'مدينة ساحلية تقع غرب المملكة العربية السعودية على ساحل البحر الأحمر، وتلقب بعروس البحر الأحمر.';
+  String get cityNajran => 'نجران';
 
   @override
-  String get alUlaDesc => 'متحف مفتوح يقع شمال غرب المملكة، يضم معالم تاريخية تعود لآلاف السنين.';
+  String get cityBaha => 'الباحة';
 
   @override
-  String get abhaDesc => 'مدينة الضباب تقع جنوب المملكة، تتميز بجوها البارد وجبالها الخضراء الخلابة.';
+  String get cityNeom => 'نيوم';
 
   @override
-  String get dammamDesc => 'مدينة ساحلية تقع شرق المملكة، وهي الميناء الرئيسي على الخليج العربي.';
+  String get cityJazan => 'جازان';
 
   @override
-  String get tabukDesc => 'بوابة الشمال، تتميز بتضاريسها المتنوعة وآثارها القديمة.';
+  String get riyadhDesc => 'عاصمة المملكة ومركزها المالي، تتميز بتنوعها الثقافي والفعاليات العالمية.';
 
   @override
-  String get medinaDesc => 'طيبة الطيبة، تضم المسجد النبوي الشريف وتعتبر من أقدس البقاع.';
+  String get jeddahDesc => 'عروس البحر الأحمر، مدينة عصرية تجمع بين التاريخ العريق والواجهات البحرية الساحرة.';
 
   @override
-  String get meccaDesc => 'قبلة المسلمين، تضم المسجد الحرام والكعبة المشرفة.';
+  String get alUlaDesc => 'متحف مفتوح يضم آثار الحضارات القديمة ومدائن صالح والواحات الخضراء.';
 
   @override
-  String get taifDesc => 'عروس المصائف، تتميز بجوها المعتدل ومزارع الورد والفواكه.';
+  String get abhaDesc => 'مدينة الضباب، تتميز بجوها البارد وجبالها الشاهقة ومنتزهاتها الطبيعية.';
 
   @override
-  String get khobarDesc => 'مدينة عصرية بالشرقية، تتميز بواجهتها البحرية الرائعة وجسر الملك فهد.';
+  String get dammamDesc => 'مدينة ساحلية شرقية، تتميز بشواطئها الهادئة وواجهاتها البحرية.';
 
   @override
-  String get hailDesc => 'عروس الشمال، تشتهر بكرم أهلها وجبالها التاريخية مثل أجا وسلمى.';
+  String get tabukDesc => 'بوابة الشمال، تتميز بتضاريسها المتنوعة من جبال وأودية ومناطق ثلجية.';
+
+  @override
+  String get medinaDesc => 'طيبة الطيبة، مدينة الهدوء والسكينة وتضم المسجد النبوي الشريف.';
+
+  @override
+  String get meccaDesc => 'أقدس البقاع، قبلة المسلمين وتضم المسجد الحرام والكعبة المشرفة.';
+
+  @override
+  String get taifDesc => 'عروس المصائف، تتميز بمزارع الورد والجو المعتدل والجبال الخلابة.';
+
+  @override
+  String get khobarDesc => 'مدينة عصرية بالمنطقة الشرقية، تشتهر بكورنيشها ومجمعاتها الراقية.';
+
+  @override
+  String get hailDesc => 'عروس الشمال، تشتهر بكرم أهلها وجبالها التاريخية.';
+
+  @override
+  String get farasanDesc => 'أرخبيل جزر في البحر الأحمر، تتميز بطبيعتها البكر وشعابها المرجانية.';
+
+  @override
+  String get najranDesc => 'مدينة تاريخية عريقة تشتهر بآثار الأخدود وقراها الطينية المميزة.';
+
+  @override
+  String get bahaDesc => 'لؤلؤة الجبال، تتميز بغاباتها الكثيفة وشلالاتها وقراها الأثرية.';
+
+  @override
+  String get neomDesc => 'مدينة المستقبل، تجمع بين التقنية المتقدمة والشواطئ البكر والجبال.';
+
+  @override
+  String get jazanDesc => 'مدينة ساحلية وجبلية، بوابة فرسان وتتميز بتنوعها البيئي الفريد.';
+
+  @override
+  String get locationRiyadh => 'وسط المملكة العربية السعودية (العاصمة)';
+
+  @override
+  String get locationJeddah => 'غرب المملكة العربية السعودية على البحر الأحمر';
+
+  @override
+  String get locationTaif => 'غرب المملكة العربية السعودية بالقرب من مكة';
+
+  @override
+  String get locationNajran => 'جنوب المملكة العربية السعودية على الحدود مع اليمن';
+
+  @override
+  String get locationTabuk => 'شمال المملكة العربية السعودية';
+
+  @override
+  String get locationBaha => 'جنوب غرب المملكة العربية السعودية بين الطائف وأبها';
+
+  @override
+  String get locationAbha => 'جنوب غرب المملكة العربية السعودية (منطقة عسير)';
+
+  @override
+  String get locationNeom => 'شمال غرب المملكة العربية السعودية (على البحر الأحمر)';
+
+  @override
+  String get locationDammamKhobar => 'شرق المملكة العربية السعودية على الخليج العربي';
+
+  @override
+  String get locationJazan => 'جنوب غرب المملكة العربية السعودية';
+
+  @override
+  String get locationFarasan => 'جنوب غرب المملكة العربية السعودية (قرب جازان)';
+
+  @override
+  String get locationAlUla => 'شمال غرب المملكة العربية السعودية';
+
+  @override
+  String get locationMecca => 'غرب المملكة العربية السعودية';
+
+  @override
+  String get locationMedina => 'غرب المملكة العربية السعودية شمال مكة';
+
+  @override
+  String get topPlaces => 'أهم الأماكن';
+
+  @override
+  String get activities => 'الفعاليات';
 
   @override
   String get placesToVisit => 'أماكن تستحق الزيارة';

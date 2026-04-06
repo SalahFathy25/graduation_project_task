@@ -174,37 +174,115 @@ class AppLocalizationsEn extends AppLocalizations {
   String get cityHail => 'Hail';
 
   @override
-  String get riyadhDesc => 'The capital of the Kingdom and its financial center, located in central Saudi Arabia and characterized by its cultural and entertainment diversity.';
+  String get cityFarasan => 'Farasan Islands';
 
   @override
-  String get jeddahDesc => 'A coastal city located in western Saudi Arabia on the Red Sea coast, known as the Bride of the Red Sea.';
+  String get cityNajran => 'Najran';
 
   @override
-  String get alUlaDesc => 'An open museum located in the northwest of the Kingdom, featuring historical landmarks dating back thousands of years.';
+  String get cityBaha => 'Al Baha';
 
   @override
-  String get abhaDesc => 'The City of Fog located in the south of the Kingdom, characterized by its cool weather and breathtaking green mountains.';
+  String get cityNeom => 'NEOM';
 
   @override
-  String get dammamDesc => 'A coastal city located in the east of the Kingdom, it is the main port on the Arabian Gulf.';
+  String get cityJazan => 'Jazan';
 
   @override
-  String get tabukDesc => 'Gateway to the North, characterized by its diverse terrain and ancient monuments.';
+  String get riyadhDesc => 'The capital and financial hub, known for its cultural diversity and global events.';
 
   @override
-  String get medinaDesc => 'Taybah, home to the Prophet\'s Mosque and considered one of the holiest places.';
+  String get jeddahDesc => 'The Bride of the Red Sea, a modern city blending ancient history with charming waterfronts.';
 
   @override
-  String get meccaDesc => 'The Qibla of Muslims, home to the Grand Mosque and the Holy Kaaba.';
+  String get alUlaDesc => 'An open museum featuring ancient civilizations\' ruins, Madain Salih, and green oases.';
 
   @override
-  String get taifDesc => 'Bride of Summer Resorts, characterized by its moderate weather and rose and fruit farms.';
+  String get abhaDesc => 'The City of Fog, known for its cool weather, high mountains, and natural parks.';
 
   @override
-  String get khobarDesc => 'A modern city in the Eastern Province, characterized by its wonderful waterfront and King Fahd Causeway.';
+  String get dammamDesc => 'An eastern coastal city, featuring calm beaches and waterfronts.';
 
   @override
-  String get hailDesc => 'Bride of the North, famous for the generosity of its people and historical mountains such as Aja and Salma.';
+  String get tabukDesc => 'Gateway to the North, known for its diverse terrain of mountains, valleys, and snowy areas.';
+
+  @override
+  String get medinaDesc => 'The Enlightened City, a city of peace and home to the Prophet\'s Mosque.';
+
+  @override
+  String get meccaDesc => 'The Holiest City, the Qibla of Muslims and home to the Grand Mosque and Kaaba.';
+
+  @override
+  String get taifDesc => 'The Bride of Resorts, known for rose farms, moderate weather, and breathtaking mountains.';
+
+  @override
+  String get khobarDesc => 'A modern city in the Eastern Province, famous for its corniche and luxury malls.';
+
+  @override
+  String get hailDesc => 'The Bride of the North, famous for its people\'s generosity and historic mountains.';
+
+  @override
+  String get farasanDesc => 'An archipelago of islands in the Red Sea, known for its pristine nature and coral reefs.';
+
+  @override
+  String get najranDesc => 'An ancient historical city famous for the Al-Ukhdood ruins and unique mud villages.';
+
+  @override
+  String get bahaDesc => 'The Pearl of the Mountains, known for its dense forests, waterfalls, and archaeological villages.';
+
+  @override
+  String get neomDesc => 'The City of the Future, combining advanced technology with pristine beaches and mountains.';
+
+  @override
+  String get jazanDesc => 'A coastal and mountainous city, the gateway to Farasan, known for its unique environmental diversity.';
+
+  @override
+  String get locationRiyadh => 'Central Saudi Arabia (Capital)';
+
+  @override
+  String get locationJeddah => 'Western Saudi Arabia on the Red Sea';
+
+  @override
+  String get locationTaif => 'Western Saudi Arabia near Mecca';
+
+  @override
+  String get locationNajran => 'Southern Saudi Arabia on the border with Yemen';
+
+  @override
+  String get locationTabuk => 'Northern Saudi Arabia';
+
+  @override
+  String get locationBaha => 'Southwestern Saudi Arabia between Taif and Abha';
+
+  @override
+  String get locationAbha => 'Southwestern Saudi Arabia (Asir Region)';
+
+  @override
+  String get locationNeom => 'Northwestern Saudi Arabia (on the Red Sea)';
+
+  @override
+  String get locationDammamKhobar => 'Eastern Saudi Arabia on the Arabian Gulf';
+
+  @override
+  String get locationJazan => 'Southwestern Saudi Arabia';
+
+  @override
+  String get locationFarasan => 'Southwestern Saudi Arabia (near Jazan)';
+
+  @override
+  String get locationAlUla => 'Northwestern Saudi Arabia';
+
+  @override
+  String get locationMecca => 'Western Saudi Arabia';
+
+  @override
+  String get locationMedina => 'Western Saudi Arabia north of Mecca';
+
+  @override
+  String get topPlaces => 'Top Places';
+
+  @override
+  String get activities => 'Activities';
 
   @override
   String get placesToVisit => 'Places to Visit';
