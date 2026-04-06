@@ -72,7 +72,8 @@ class AppConstants {
       {
         'id': 'taif',
         'name': isArabic ? l10n.cityTaif : 'Taif',
-        'image': 'https://i.pinimg.com/1200x/6d/4a/6a/6d4a6a0e695d774888846c4309325852.jpg',
+        'image':
+            'https://imgs.search.brave.com/lRGPjnfFjncd7JHApd2sLq5YBlppgbVnpyVY3_PUd1Q/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9nb2xk/ZW5ob3N0LmNvL2Js/b2cvd3AtY29udGVu/dC91cGxvYWRzLzIw/MjUvMDMvJUQ4JUJB/JUQ4JUJBJUQ5JTgx/JUQ5JTgxJUQ4JUI5/JUQ5JTgxJUQ4JUI5/JUQ4JUI5JUQ5JTgx/JUQ4JUI5JUQ5JTgx/LTEwMjR4NTc2Lmpw/Zw',
         'desc': isArabic ? l10n.taifDesc : 'The Bride of Resorts.',
         'location': isArabic ? l10n.locationTaif : 'Western Saudi Arabia near Mecca',
         'region': 'western',
@@ -100,7 +101,8 @@ class AppConstants {
       {
         'id': 'najran',
         'name': isArabic ? l10n.cityNajran : 'Najran',
-        'image': 'https://i.pinimg.com/1200x/1e/8e/8e/1e8e8e78888a78888a78888a78888a78.jpg',
+        'image':
+            'https://imgs.search.brave.com/BuE9BPHWdDuVQnHNIsJ-yEUDl3cghIhb1tUVBUN1Jw0/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9tZWRp/YS5nZXR0eWltYWdl/cy5jb20vaWQvMTQ1/NTM0OTA4MS9waG90/by9zYXVkaS1hcmFi/aWEtbmFqcmFuLXBy/b3ZpbmNlLW5hanJh/bi1hZXJpYWwtdmll/dy1vZi1oaXN0b3Jp/Yy1hbC1hYW4tcGFs/YWNlLmpwZz9zPTYx/Mng2MTImdz0wJms9/MjAmYz1lTUkxUm90/LTFPYUdyc0UxY3VD/ZlNfeDRWeVNLT3Z1/OVFfRmQ1WXpEMG93/PQ',
         'desc': isArabic ? l10n.najranDesc : 'Ancient Historic City.',
         'location':
             isArabic ? l10n.locationNajran : 'Southern Saudi Arabia on the border with Yemen',
@@ -127,7 +129,8 @@ class AppConstants {
       {
         'id': 'tabuk',
         'name': isArabic ? l10n.cityTabuk : 'Tabuk',
-        'image': 'https://i.pinimg.com/1200x/2a/2a/2a/2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a.jpg',
+        'image':
+            'https://imgs.search.brave.com/v4OnlTjeRmz654ZEMIDMMect8srn6n2RPYIo6DpZ3x8/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9zYXVk/aXBlZGlhLmNvbS92/YXIvc2l0ZS9zdG9y/YWdlL2ltYWdlcy8y/LzgvNi83LzQzNDc2/ODItMS1hcmEtU0Ev/NGVlYjVlYmQzYjk5/LTY1NjE4LmpwZw',
         'desc': isArabic ? l10n.tabukDesc : 'Gateway to the North.',
         'location': isArabic ? l10n.locationTabuk : 'Northern Saudi Arabia',
         'region': 'northern',
@@ -153,7 +156,8 @@ class AppConstants {
       {
         'id': 'baha',
         'name': isArabic ? l10n.cityBaha : 'Al Baha',
-        'image': 'https://i.pinimg.com/1200x/3b/3b/3b/3b3b3b3b3b3b3b3b3b3b3b3b3b3b3b3b.jpg',
+        'image':
+            'https://imgs.search.brave.com/OTBzXG4PJS6gOIV6ROXfixZzPno0BCvulhiX_8ePZpg/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9iYWhh/YWRtaW4uYmFoYS5n/b3Yuc2EvVXBsb2Fk/cy9JbWFnZXMvMjY5/ODI5MTUtNjIyMS00/NTc3LWFlNDktNzgz/NTQwYjc3NDY3X1do/YXRzQXBwJTIwSW1h/Z2UlMjAyMDIzLTAx/LTE0JTIwYXQlMjA3/LjI2LjI0JTIwUE0l/MjAoMSkuanBlZw',
         'desc': isArabic ? l10n.bahaDesc : 'The Pearl of the Mountains.',
         'location':
             isArabic ? l10n.locationBaha : 'Southwestern Saudi Arabia between Taif and Abha',
@@ -209,7 +213,8 @@ class AppConstants {
       {
         'id': 'neom',
         'name': isArabic ? l10n.cityNeom : 'NEOM',
-        'image': 'https://i.pinimg.com/1200x/4e/4e/4e/4e4e4e4e4e4e4e4e4e4e4e4e4e4e4e4e.jpg',
+        'image':
+            'https://imgs.search.brave.com/Yjv_DCBlteRIxSq5AOxHOjHkiSoghioB2zq2hFK_Va0/rs:fit:860:0:0:0/g:ce/aHR0cDovL2RlYWxh/cHAuc2EvYmxvZy93/cC1jb250ZW50L3Vw/bG9hZHMvMjAyMy8w/NS8lRDklODUlRDgl/QjQlRDglQjElRDkl/ODglRDglQjktJUQ5/JTg2JUQ5JThBJUQ5/JTg4JUQ5JTg1LnBu/Zw',
         'desc': isArabic ? l10n.neomDesc : 'The City of the Future.',
         'location': isArabic ? l10n.locationNeom : 'Northwestern Saudi Arabia (on the Red Sea)',
         'region': 'northwestern',
@@ -236,8 +241,9 @@ class AppConstants {
       },
       {
         'id': 'dammam',
-        'name': isArabic ? 'الدمام والخبر' : 'Dammam & Khobar',
-        'image': 'https://i.pinimg.com/1200x/5e/5e/5e/5e5e5e5e5e5e5e5e5e5e5e5e5e5e5e5e.jpg',
+        'name': isArabic ? 'الدمام' : 'Dammam',
+        'image':
+            'https://imgs.search.brave.com/sDPxmqTK84RT8XXYkh-iMLqGF5bl4VwrPn31iy2Y68U/rs:fit:860:0:0:0/g:ce/aHR0cDovL2RlYWxh/cHAuc2EvYmxvZy93/cC1jb250ZW50L3Vw/bG9hZHMvMjAyMC8w/NS8lRDglQUMlRDgl/QjIlRDklOEElRDgl/QjElRDglQTktJUQ4/JUE3JUQ5JTg0JUQ5/JTg1JUQ4JUIxJUQ4/JUFDJUQ4JUE3JUQ5/JTg2LTQuanBn',
         'desc': isArabic ? l10n.dammamDesc : 'Coastal Eastern City.',
         'location':
             isArabic ? l10n.locationDammamKhobar : 'Eastern Saudi Arabia on the Arabian Gulf',
@@ -264,7 +270,8 @@ class AppConstants {
       {
         'id': 'jazan',
         'name': isArabic ? l10n.cityJazan : 'Jazan',
-        'image': 'https://i.pinimg.com/1200x/6f/6f/6f/6f6f6f6f6f6f6f6f6f6f6f6f6f6f6f6f.jpg',
+        'image':
+            'https://imgs.search.brave.com/GfPCFEpi_kxNOku9uy6Q9bdGC_cGw_oBa6G1qSxP1kg/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9zYXVk/aXBlZGlhLmNvbS92/YXIvc2l0ZS9zdG9y/YWdlL2ltYWdlcy8y/LzIvOC85LzU1Mzk4/MjItMS1hcmEtU0Ev/ZTkxOGRlYmFmOWJh/LTY1NzA3LmpwZw',
         'desc': isArabic ? l10n.jazanDesc : 'Nature and Environment Diversity.',
         'location': isArabic ? l10n.locationJazan : 'Southwestern Saudi Arabia',
         'region': 'southern',
@@ -289,7 +296,8 @@ class AppConstants {
       {
         'id': 'farasan',
         'name': isArabic ? l10n.cityFarasan : 'Farasan Islands',
-        'image': 'https://i.pinimg.com/1200x/7f/7f/7f/7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f.jpg',
+        'image':
+            'https://imgs.search.brave.com/ln9QTmr3WtxlAJ-zFlw9OuvG0_atsbCZvnIIvIS_Rhk/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9jbm4t/YXJhYmljLWltYWdl/cy5jbm4uaW8vY2xv/dWRpbmFyeS9pbWFn/ZS91cGxvYWQvd185/MjQsY19zY2FsZSxx/X2F1dG8vY25uYXJh/YmljLzIwMjEvMDkv/MTYvaW1hZ2VzLzE5/MzY4NC5qcGc',
         'desc': isArabic ? l10n.farasanDesc : 'Pristine Archipelago.',
         'location': isArabic ? l10n.locationFarasan : 'Southwestern Saudi Arabia (near Jazan)',
         'region': 'southern',
@@ -343,7 +351,7 @@ class AppConstants {
         'id': 'mecca',
         'name': isArabic ? l10n.cityMecca : 'Mecca',
         'image':
-            'https://imgs.search.brave.com/PnK0zW92qAFCLJM77Xi8cfkUQvjTKraHSk1GgSRY-0c/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9wbmcu/cG5ndHJlZS5jb20v/dGh1bWJfYmFjay9m/aDI2MC9iYWNrZ3Jv/dW5kLzIwMjUwNzAz/L3BuZ3RyZWUtYWVy/aWFsLXZpZXctb2Yt/dGhlLWthYWJhLWlu/LW1l/Y2NhLWlsbHVt/aW5hdGVkLWF0LW5p/Z2h0LXN1cnJvdW5k/ZWQtaW1hZ2VfMTc0/NTY4NTAud2VicA',
+            'https://imgs.search.brave.com/FJKxCg-lq4mMAx2e-fpd1V3LPduBdFVkow49rkeChN4/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9ibG9n/Z2VyLmdvb2dsZXVz/ZXJjb250ZW50LmNv/bS9pbWcvYi9SMjl2/WjJ4bC9BVnZYc0Vo/MElKN1pNYjFxT1No/X1J3WXZtNTktZmp4/ZlRJdVZWRzFmYkNS/bUVVYkp6SG5reXVZ/UEFJZW4tSnR3dnZt/X3NSYkZrMUZ2clY1/MjVQY05OLVBJYkVQ/Nm8wa3EtSHU5OXY1/Vk1sYWt6aVZRQ013/M1cxb0VrWUx1RVd6/WjRUWHdFRkx4NzRn/RHNJZjUtcDQvczQw/MC1ydy8lRDklODUl/RDklODMlRDglQTkr/JUQ4JUE3JUQ5JTg0/JUQ5JTg1JUQ5JTgz/JUQ4JUIxJUQ5JTg1/JUQ4JUE5K01la2th/aC5ibXA',
         'desc': isArabic ? l10n.meccaDesc : 'The Holiest City.',
         'location': isArabic ? l10n.locationMecca : 'Western Saudi Arabia',
         'region': 'western',
