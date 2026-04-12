@@ -1,3 +1,5 @@
+import 'dart:ui' as ui;
+import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -226,7 +228,7 @@ class _CityDetailsPageState extends State<CityDetailsPage> {
       ),
       child: ClipOval(
         child: BackdropFilter(
-          filter: ImageFilter.blur(sigmaX: 5, sigmaY: 5),
+          filter: ui.ImageFilter.blur(sigmaX: 5, sigmaY: 5),
           child: IconButton(
             icon: Icon(icon, color: iconColor, size: 20),
             onPressed: onPressed,

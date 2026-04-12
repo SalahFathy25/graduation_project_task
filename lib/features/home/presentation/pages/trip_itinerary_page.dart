@@ -11,6 +11,7 @@ import 'package:latlong2/latlong.dart' as ll;
 import 'package:flutter_map_cache/flutter_map_cache.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:geolocator/geolocator.dart';
+import 'package:dio_cache_interceptor_file_store/dio_cache_interceptor_file_store.dart';
 import 'dart:io';
 
 import '../../../../l10n/app_localizations.dart';
@@ -266,7 +267,7 @@ class _TripItineraryPageState extends State<TripItineraryPage> with SingleTicker
               userAgentPackageName: 'com.example.graduation_project',
               tileProvider: CachedTileProvider(
                 store: FileCacheStore(
-                  Directory(_cachePath!),
+                  _cachePath!,
                 ),
               ),
             ),

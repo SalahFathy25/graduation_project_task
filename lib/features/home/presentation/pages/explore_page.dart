@@ -8,6 +8,8 @@ import 'package:graduation_project/features/home/presentation/cubit/home_cubit.d
 import 'package:graduation_project/features/home/presentation/cubit/home_state.dart';
 import 'package:graduation_project/features/attractions/domain/entities/attraction.dart';
 import '../../../../l10n/app_localizations.dart';
+import '../../../auth/presentation/cubit/auth_cubit.dart';
+import '../../../auth/presentation/cubit/auth_state.dart';
 
 class ExplorePage extends StatefulWidget {
   const ExplorePage({super.key});
@@ -55,7 +57,8 @@ class _ExplorePageState extends State<ExplorePage> {
                 child: Container(
                   width: 40,
                   height: 4,
-                  decoration: BoxDecoration(color: Colors.grey[300], borderRadius: BorderRadius.circular(2)),
+                  decoration: BoxDecoration(
+                      color: Colors.grey[300], borderRadius: BorderRadius.circular(2)),
                 ),
               ),
               const SizedBox(height: 24),
@@ -81,16 +84,19 @@ class _ExplorePageState extends State<ExplorePage> {
                 ],
               ),
               const SizedBox(height: 24),
-              Text(isArabic ? 'الفئة' : 'Category', style: GoogleFonts.almarai(fontWeight: FontWeight.bold)),
+              Text(isArabic ? 'الفئة' : 'Category',
+                  style: GoogleFonts.almarai(fontWeight: FontWeight.bold)),
               const SizedBox(height: 12),
               Wrap(
                 spacing: 10,
                 children: [
-                  _buildFilterChip('all', isArabic ? 'الكل' : 'All', _selectedCategory == 'all', (val) {
+                  _buildFilterChip('all', isArabic ? 'الكل' : 'All', _selectedCategory == 'all',
+                      (val) {
                     setModalState(() => _selectedCategory = 'all');
                     setState(() {});
                   }),
-                  _buildFilterChip('adventure', l10n.adventure, _selectedCategory == 'adventure', (val) {
+                  _buildFilterChip('adventure', l10n.adventure, _selectedCategory == 'adventure',
+                      (val) {
                     setModalState(() => _selectedCategory = 'adventure');
                     setState(() {});
                   }),
@@ -98,14 +104,16 @@ class _ExplorePageState extends State<ExplorePage> {
                     setModalState(() => _selectedCategory = 'family');
                     setState(() {});
                   }),
-                  _buildFilterChip('religious', l10n.religious, _selectedCategory == 'religious', (val) {
+                  _buildFilterChip('religious', l10n.religious, _selectedCategory == 'religious',
+                      (val) {
                     setModalState(() => _selectedCategory = 'religious');
                     setState(() {});
                   }),
                 ],
               ),
               const SizedBox(height: 24),
-              Text(isArabic ? 'نطاق السعر (ريال)' : 'Price Range (SAR)', style: GoogleFonts.almarai(fontWeight: FontWeight.bold)),
+              Text(isArabic ? 'نطاق السعر (ريال)' : 'Price Range (SAR)',
+                  style: GoogleFonts.almarai(fontWeight: FontWeight.bold)),
               RangeSlider(
                 values: RangeValues(_minPrice, _maxPrice),
                 min: 0,
@@ -124,8 +132,10 @@ class _ExplorePageState extends State<ExplorePage> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text('$_minPrice ريال', style: GoogleFonts.almarai(fontSize: 12, color: Colors.grey)),
-                  Text('$_maxPrice ريال', style: GoogleFonts.almarai(fontSize: 12, color: Colors.grey)),
+                  Text('$_minPrice ريال',
+                      style: GoogleFonts.almarai(fontSize: 12, color: Colors.grey)),
+                  Text('$_maxPrice ريال',
+                      style: GoogleFonts.almarai(fontSize: 12, color: Colors.grey)),
                 ],
               ),
               const SizedBox(height: 32),
@@ -138,7 +148,8 @@ class _ExplorePageState extends State<ExplorePage> {
                     backgroundColor: AppColors.primary,
                     shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
                   ),
-                  child: Text(isArabic ? 'تطبيق' : 'Apply', style: GoogleFonts.almarai(color: Colors.white, fontWeight: FontWeight.bold)),
+                  child: Text(isArabic ? 'تطبيق' : 'Apply',
+                      style: GoogleFonts.almarai(color: Colors.white, fontWeight: FontWeight.bold)),
                 ),
               ),
             ],
@@ -150,13 +161,17 @@ class _ExplorePageState extends State<ExplorePage> {
 
   Widget _buildFilterChip(String id, String label, bool isSelected, Function(bool) onSelected) {
     return FilterChip(
-      label: Text(label, style: GoogleFonts.almarai(fontSize: 12, color: isSelected ? Colors.white : Colors.black)),
+      label: Text(label,
+          style:
+              GoogleFonts.almarai(fontSize: 12, color: isSelected ? Colors.white : Colors.black)),
       selected: isSelected,
       onSelected: onSelected,
       selectedColor: AppColors.primary,
       checkmarkColor: Colors.white,
       backgroundColor: Colors.grey[100],
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10), borderSide: BorderSide.none),
+      shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(10),
+          side: BorderSide(color: isSelected ? AppColors.primary : Colors.grey[200]!, width: 1)),
     );
   }
 
@@ -180,7 +195,7 @@ class _ExplorePageState extends State<ExplorePage> {
     final recommendedCities = allCities.where((city) {
       if (userPurpose == null) return false;
       final cityCategories = city['categories'] as List;
-      
+
       // Match city categories with user purpose
       if (userPurpose!.toLowerCase().contains('adventure') || userPurpose!.contains('مغامرة')) {
         return cityCategories.contains('adventure');
@@ -200,7 +215,8 @@ class _ExplorePageState extends State<ExplorePage> {
     final filteredCities = allCities.where((city) {
       final matchesRegion = _selectedRegion == 'all' || city['region'] == _selectedRegion;
       final matchesSearch = city['name'].toLowerCase().contains(_searchQuery.toLowerCase());
-      final matchesCategory = _selectedCategory == 'all' || (city['categories'] as List).contains(_selectedCategory);
+      final matchesCategory =
+          _selectedCategory == 'all' || (city['categories'] as List).contains(_selectedCategory);
       // Assuming cities have a base price or we use a dummy for filtering logic demonstration
       final cityPrice = (city['price'] ?? 500).toDouble();
       final matchesPrice = cityPrice >= _minPrice && cityPrice <= _maxPrice;
@@ -222,10 +238,12 @@ class _ExplorePageState extends State<ExplorePage> {
             stretch: true,
             // Title appears only when collapsed
             centerTitle: true,
-            title: _searchQuery.isEmpty ? null : Text(
-              l10n.explore,
-              style: GoogleFonts.almarai(fontWeight: FontWeight.bold, color: Colors.white),
-            ),
+            title: _searchQuery.isEmpty
+                ? null
+                : Text(
+                    l10n.explore,
+                    style: GoogleFonts.almarai(fontWeight: FontWeight.bold, color: Colors.white),
+                  ),
             flexibleSpace: FlexibleSpaceBar(
               stretchModes: const [StretchMode.zoomBackground],
               background: Stack(
@@ -306,7 +324,8 @@ class _ExplorePageState extends State<ExplorePage> {
                             decoration: InputDecoration(
                               hintText: l10n.searchHint,
                               hintStyle: GoogleFonts.almarai(color: Colors.grey[400], fontSize: 14),
-                              prefixIcon: const Icon(Icons.search_rounded, color: AppColors.primary),
+                              prefixIcon:
+                                  const Icon(Icons.search_rounded, color: AppColors.primary),
                               border: InputBorder.none,
                               contentPadding: const EdgeInsets.symmetric(vertical: 15),
                             ),
@@ -319,7 +338,8 @@ class _ExplorePageState extends State<ExplorePage> {
                             icon: const Icon(Icons.tune_rounded, color: AppColors.primary),
                             style: IconButton.styleFrom(
                               backgroundColor: AppColors.primary.withOpacity(0.05),
-                              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+                              shape:
+                                  RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
                             ),
                           ),
                         ),
@@ -347,7 +367,8 @@ class _ExplorePageState extends State<ExplorePage> {
                       children: [
                         Row(
                           children: [
-                            const Icon(Icons.auto_awesome_rounded, color: AppColors.secondary, size: 20),
+                            const Icon(Icons.auto_awesome_rounded,
+                                color: AppColors.secondary, size: 20),
                             const SizedBox(width: 8),
                             Text(
                               isArabic ? 'نوصي به لك ✨' : 'Recommended for You',
@@ -454,11 +475,16 @@ class _ExplorePageState extends State<ExplorePage> {
                     padding: const EdgeInsets.symmetric(horizontal: 16),
                     children: [
                       _buildRegionChip('all', isArabic ? 'الكل' : 'All', Icons.map_rounded),
-                      _buildRegionChip('central', isArabic ? 'الوسطى' : 'Central', Icons.center_focus_strong),
-                      _buildRegionChip('western', isArabic ? 'الغربية' : 'Western', Icons.wb_sunny_rounded),
-                      _buildRegionChip('eastern', isArabic ? 'الشرقية' : 'Eastern', Icons.waves_rounded),
-                      _buildRegionChip('southern', isArabic ? 'الجنوبية' : 'Southern', Icons.landscape_rounded),
-                      _buildRegionChip('northwestern', isArabic ? 'الشمالية الغربية' : 'Northwest', Icons.ac_unit_rounded),
+                      _buildRegionChip(
+                          'central', isArabic ? 'الوسطى' : 'Central', Icons.center_focus_strong),
+                      _buildRegionChip(
+                          'western', isArabic ? 'الغربية' : 'Western', Icons.wb_sunny_rounded),
+                      _buildRegionChip(
+                          'eastern', isArabic ? 'الشرقية' : 'Eastern', Icons.waves_rounded),
+                      _buildRegionChip(
+                          'southern', isArabic ? 'الجنوبية' : 'Southern', Icons.landscape_rounded),
+                      _buildRegionChip('northwestern', isArabic ? 'الشمالية الغربية' : 'Northwest',
+                          Icons.ac_unit_rounded),
                     ],
                   ),
                 ),
@@ -507,7 +533,8 @@ class _ExplorePageState extends State<ExplorePage> {
 
   Widget _buildFeaturedCard(Map<String, dynamic> city) {
     return GestureDetector(
-      onTap: () => Navigator.push(context, MaterialPageRoute(builder: (context) => CityDetailsPage(city: city))),
+      onTap: () => Navigator.push(
+          context, MaterialPageRoute(builder: (context) => CityDetailsPage(city: city))),
       child: Container(
         width: 160,
         margin: const EdgeInsets.only(right: 16),
@@ -534,7 +561,8 @@ class _ExplorePageState extends State<ExplorePage> {
             children: [
               Text(
                 city['name'],
-                style: GoogleFonts.almarai(color: Colors.white, fontWeight: FontWeight.bold, fontSize: 16),
+                style: GoogleFonts.almarai(
+                    color: Colors.white, fontWeight: FontWeight.bold, fontSize: 16),
               ),
               Row(
                 children: [
@@ -555,13 +583,15 @@ class _ExplorePageState extends State<ExplorePage> {
 
   Widget _buildCityCard(Map<String, dynamic> city) {
     return GestureDetector(
-      onTap: () => Navigator.push(context, MaterialPageRoute(builder: (context) => CityDetailsPage(city: city))),
+      onTap: () => Navigator.push(
+          context, MaterialPageRoute(builder: (context) => CityDetailsPage(city: city))),
       child: Container(
         decoration: BoxDecoration(
           color: Colors.white,
           borderRadius: BorderRadius.circular(24),
           boxShadow: [
-            BoxShadow(color: Colors.black.withOpacity(0.04), blurRadius: 12, offset: const Offset(0, 6)),
+            BoxShadow(
+                color: Colors.black.withOpacity(0.04), blurRadius: 12, offset: const Offset(0, 6)),
           ],
         ),
         child: Column(
@@ -576,7 +606,8 @@ class _ExplorePageState extends State<ExplorePage> {
                     child: Container(
                       decoration: BoxDecoration(
                         borderRadius: const BorderRadius.vertical(top: Radius.circular(24)),
-                        image: DecorationImage(image: NetworkImage(city['image']), fit: BoxFit.cover),
+                        image:
+                            DecorationImage(image: NetworkImage(city['image']), fit: BoxFit.cover),
                       ),
                     ),
                   ),
@@ -631,7 +662,8 @@ class _ExplorePageState extends State<ExplorePage> {
                     children: [
                       const Icon(Icons.star, color: Colors.amber, size: 12),
                       const SizedBox(width: 4),
-                      Text('${city['rating']}', style: GoogleFonts.almarai(fontSize: 11, color: Colors.grey[600])),
+                      Text('${city['rating']}',
+                          style: GoogleFonts.almarai(fontSize: 11, color: Colors.grey[600])),
                     ],
                   ),
                 ],
