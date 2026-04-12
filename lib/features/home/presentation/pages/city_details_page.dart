@@ -1,5 +1,4 @@
-import 'dart:ui';
-import 'package:flutter/material.dart';
+import 'package:url_launcher/url_launcher.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:graduation_project/core/theme/app_colors.dart';
@@ -297,6 +296,11 @@ class _CityDetailsPageState extends State<CityDetailsPage> {
                   ],
                 ),
               ),
+              IconButton(
+                onPressed: () => _launchNavigation(widget.city['lat'], widget.city['lng']),
+                icon: const Icon(Icons.navigation_rounded, color: AppColors.primary),
+                tooltip: 'فتح الملاحة',
+              ),
             ],
           ),
           Padding(
@@ -467,5 +471,16 @@ class _CityDetailsPageState extends State<CityDetailsPage> {
         availableActivities: allActivities,
       ),
     );
+  }
+
+  Future<void> _launchNavigation(double lat, double lng) async {
+    final Uri url = Uri.parse('google.navigation:q=$lat,$lng');
+    final Uri webUrl = Uri.parse('https://www.google.com/maps/search/?api=1&query=$lat,$lng');
+    
+    if (await canLaunchUrl(url)) {
+      await launchUrl(url);
+    } else if (await canLaunchUrl(webUrl)) {
+      await launchUrl(webUrl);
+    }
   }
 }

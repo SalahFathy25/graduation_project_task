@@ -165,8 +165,37 @@ class _ExplorePageState extends State<ExplorePage> {
     final l10n = AppLocalizations.of(context)!;
     bool isArabic = Localizations.localeOf(context).languageCode == 'ar';
 
+    final authState = context.watch<AuthCubit>().state;
+    String? userType;
+    String? userPurpose;
+    if (authState is Authenticated) {
+      userType = authState.user.travelerType;
+      userPurpose = authState.user.travelPurpose;
+    }
+
     final List<Map<String, dynamic>> allCities = AppConstants.getCities(l10n, isArabic);
     final featuredCities = allCities.where((c) => (c['rating'] as num) >= 4.8).toList();
+
+    // Recommendation Logic (Requirement 7)
+    final recommendedCities = allCities.where((city) {
+      if (userPurpose == null) return false;
+      final cityCategories = city['categories'] as List;
+      
+      // Match city categories with user purpose
+      if (userPurpose!.toLowerCase().contains('adventure') || userPurpose!.contains('مغامرة')) {
+        return cityCategories.contains('adventure');
+      }
+      if (userPurpose!.toLowerCase().contains('family') || userPurpose!.contains('عائلة')) {
+        return cityCategories.contains('family');
+      }
+      if (userPurpose!.toLowerCase().contains('religious') || userPurpose!.contains('ديني')) {
+        return cityCategories.contains('religious');
+      }
+      if (userPurpose!.toLowerCase().contains('business') || userPurpose!.contains('أعمال')) {
+        return cityCategories.contains('business');
+      }
+      return false;
+    }).toList();
 
     final filteredCities = allCities.where((city) {
       final matchesRegion = _selectedRegion == 'all' || city['region'] == _selectedRegion;
@@ -305,7 +334,55 @@ class _ExplorePageState extends State<ExplorePage> {
           // Spacer to prevent content from being hidden under the floating search bar
           const SliverToBoxAdapter(child: SizedBox(height: 40)),
 
-          // 3. Featured Destinations (Horizontal)
+          // 3. Recommended for you (Requirement 7 & 2)
+          if (_searchQuery.isEmpty && _selectedRegion == 'all' && recommendedCities.isNotEmpty) ...[
+            SliverToBoxAdapter(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 24),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Row(
+                          children: [
+                            const Icon(Icons.auto_awesome_rounded, color: AppColors.secondary, size: 20),
+                            const SizedBox(width: 8),
+                            Text(
+                              isArabic ? 'نوصي به لك ✨' : 'Recommended for You',
+                              style: GoogleFonts.almarai(
+                                fontSize: 18,
+                                fontWeight: FontWeight.bold,
+                                color: AppColors.textPrimary,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
+                  ),
+                  const SizedBox(height: 12),
+                  SizedBox(
+                    height: 220,
+                    child: ListView.builder(
+                      padding: const EdgeInsets.symmetric(horizontal: 16),
+                      scrollDirection: Axis.horizontal,
+                      itemCount: recommendedCities.length,
+                      physics: const BouncingScrollPhysics(),
+                      itemBuilder: (context, index) {
+                        final city = recommendedCities[index];
+                        return _buildFeaturedCard(city);
+                      },
+                    ),
+                  ),
+                  const SizedBox(height: 24),
+                ],
+              ),
+            ),
+          ],
+
+          // 3.5. Featured Destinations (Horizontal)
           if (_searchQuery.isEmpty && _selectedRegion == 'all') ...[
             SliverToBoxAdapter(
               child: Column(
