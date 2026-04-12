@@ -288,6 +288,10 @@ class _QuickPlanBottomSheetState extends State<QuickPlanBottomSheet> {
     if (authState is! Authenticated) return;
 
     await Future.delayed(const Duration(seconds: 2));
+    if (!mounted) return;
+
+    final l10n = AppLocalizations.of(context)!;
+    final isArabic = l10n.localeName == 'ar';
 
     final now = DateTime.now();
     final end = now.add(Duration(days: _duration));
@@ -296,7 +300,7 @@ class _QuickPlanBottomSheetState extends State<QuickPlanBottomSheet> {
     final newTrip = Trip(
       id: DateTime.now().millisecondsSinceEpoch.toString(),
       userId: authState.user.id,
-      name: '${widget.cityName} Trip',
+      name: isArabic ? '${l10n.trip} ${widget.cityName}' : '${widget.cityName} ${l10n.trip}',
       city: widget.cityName,
       startDate: dateFormat.format(now),
       endDate: dateFormat.format(end),
@@ -312,7 +316,6 @@ class _QuickPlanBottomSheetState extends State<QuickPlanBottomSheet> {
     );
 
     if (mounted) {
-      final l10n = AppLocalizations.of(context)!;
       context.read<HomeCubit>().createTrip(newTrip);
       Navigator.pop(context); // إغلاق الـ Bottom Sheet فقط
 

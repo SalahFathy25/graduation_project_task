@@ -42,6 +42,9 @@ class AppLocalizationsAr extends AppLocalizations {
   String get activeTrip => 'رحلتك القادمة';
 
   @override
+  String get trip => 'رحلة';
+
+  @override
   String get budget => 'الميزانية';
 
   @override

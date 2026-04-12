@@ -161,6 +161,12 @@ abstract class AppLocalizations {
   /// **'Upcoming Trip'**
   String get activeTrip;
 
+  /// No description provided for @trip.
+  ///
+  /// In en, this message translates to:
+  /// **'Trip'**
+  String get trip;
+
   /// No description provided for @budget.
   ///
   /// In en, this message translates to:

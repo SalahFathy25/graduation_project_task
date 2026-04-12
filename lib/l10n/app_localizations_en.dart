@@ -42,6 +42,9 @@ class AppLocalizationsEn extends AppLocalizations {
   String get activeTrip => 'Upcoming Trip';
 
   @override
+  String get trip => 'Trip';
+
+  @override
   String get budget => 'Budget';
 
   @override
