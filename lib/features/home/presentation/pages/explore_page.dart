@@ -18,6 +18,9 @@ class ExplorePage extends StatefulWidget {
 
 class _ExplorePageState extends State<ExplorePage> {
   String _selectedRegion = 'all';
+  String _selectedCategory = 'all';
+  double _minPrice = 0;
+  double _maxPrice = 5000;
   final TextEditingController _searchController = TextEditingController();
   String _searchQuery = '';
 
@@ -25,6 +28,136 @@ class _ExplorePageState extends State<ExplorePage> {
   void dispose() {
     _searchController.dispose();
     super.dispose();
+  }
+
+  void _showFilterBottomSheet(AppLocalizations l10n, bool isArabic) {
+    showModalBottomSheet(
+      context: context,
+      isScrollControlled: true,
+      backgroundColor: Colors.transparent,
+      builder: (context) => StatefulBuilder(
+        builder: (context, setModalState) => Container(
+          padding: EdgeInsets.only(
+            top: 20,
+            left: 24,
+            right: 24,
+            bottom: MediaQuery.of(context).viewInsets.bottom + 32,
+          ),
+          decoration: const BoxDecoration(
+            color: Colors.white,
+            borderRadius: BorderRadius.vertical(top: Radius.circular(32)),
+          ),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Center(
+                child: Container(
+                  width: 40,
+                  height: 4,
+                  decoration: BoxDecoration(color: Colors.grey[300], borderRadius: BorderRadius.circular(2)),
+                ),
+              ),
+              const SizedBox(height: 24),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(
+                    isArabic ? 'تصفية النتائج' : 'Filter Results',
+                    style: GoogleFonts.almarai(fontSize: 20, fontWeight: FontWeight.bold),
+                  ),
+                  TextButton(
+                    onPressed: () {
+                      setModalState(() {
+                        _selectedRegion = 'all';
+                        _selectedCategory = 'all';
+                        _minPrice = 0;
+                        _maxPrice = 5000;
+                      });
+                      setState(() {});
+                    },
+                    child: Text(isArabic ? 'إعادة ضبط' : 'Reset'),
+                  ),
+                ],
+              ),
+              const SizedBox(height: 24),
+              Text(isArabic ? 'الفئة' : 'Category', style: GoogleFonts.almarai(fontWeight: FontWeight.bold)),
+              const SizedBox(height: 12),
+              Wrap(
+                spacing: 10,
+                children: [
+                  _buildFilterChip('all', isArabic ? 'الكل' : 'All', _selectedCategory == 'all', (val) {
+                    setModalState(() => _selectedCategory = 'all');
+                    setState(() {});
+                  }),
+                  _buildFilterChip('adventure', l10n.adventure, _selectedCategory == 'adventure', (val) {
+                    setModalState(() => _selectedCategory = 'adventure');
+                    setState(() {});
+                  }),
+                  _buildFilterChip('family', l10n.family, _selectedCategory == 'family', (val) {
+                    setModalState(() => _selectedCategory = 'family');
+                    setState(() {});
+                  }),
+                  _buildFilterChip('religious', l10n.religious, _selectedCategory == 'religious', (val) {
+                    setModalState(() => _selectedCategory = 'religious');
+                    setState(() {});
+                  }),
+                ],
+              ),
+              const SizedBox(height: 24),
+              Text(isArabic ? 'نطاق السعر (ريال)' : 'Price Range (SAR)', style: GoogleFonts.almarai(fontWeight: FontWeight.bold)),
+              RangeSlider(
+                values: RangeValues(_minPrice, _maxPrice),
+                min: 0,
+                max: 5000,
+                divisions: 20,
+                activeColor: AppColors.primary,
+                labels: RangeLabels('$_minPrice', '$_maxPrice'),
+                onChanged: (values) {
+                  setModalState(() {
+                    _minPrice = values.start;
+                    _maxPrice = values.end;
+                  });
+                  setState(() {});
+                },
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text('$_minPrice ريال', style: GoogleFonts.almarai(fontSize: 12, color: Colors.grey)),
+                  Text('$_maxPrice ريال', style: GoogleFonts.almarai(fontSize: 12, color: Colors.grey)),
+                ],
+              ),
+              const SizedBox(height: 32),
+              SizedBox(
+                width: double.infinity,
+                height: 56,
+                child: ElevatedButton(
+                  onPressed: () => Navigator.pop(context),
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: AppColors.primary,
+                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+                  ),
+                  child: Text(isArabic ? 'تطبيق' : 'Apply', style: GoogleFonts.almarai(color: Colors.white, fontWeight: FontWeight.bold)),
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget _buildFilterChip(String id, String label, bool isSelected, Function(bool) onSelected) {
+    return FilterChip(
+      label: Text(label, style: GoogleFonts.almarai(fontSize: 12, color: isSelected ? Colors.white : Colors.black)),
+      selected: isSelected,
+      onSelected: onSelected,
+      selectedColor: AppColors.primary,
+      checkmarkColor: Colors.white,
+      backgroundColor: Colors.grey[100],
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10), borderSide: BorderSide.none),
+    );
   }
 
   @override
@@ -38,7 +171,12 @@ class _ExplorePageState extends State<ExplorePage> {
     final filteredCities = allCities.where((city) {
       final matchesRegion = _selectedRegion == 'all' || city['region'] == _selectedRegion;
       final matchesSearch = city['name'].toLowerCase().contains(_searchQuery.toLowerCase());
-      return matchesRegion && matchesSearch;
+      final matchesCategory = _selectedCategory == 'all' || (city['categories'] as List).contains(_selectedCategory);
+      // Assuming cities have a base price or we use a dummy for filtering logic demonstration
+      final cityPrice = (city['price'] ?? 500).toDouble();
+      final matchesPrice = cityPrice >= _minPrice && cityPrice <= _maxPrice;
+
+      return matchesRegion && matchesSearch && matchesCategory && matchesPrice;
     }).toList();
 
     return Scaffold(
@@ -130,16 +268,33 @@ class _ExplorePageState extends State<ExplorePage> {
                         ),
                       ],
                     ),
-                    child: TextField(
-                      controller: _searchController,
-                      onChanged: (value) => setState(() => _searchQuery = value),
-                      decoration: InputDecoration(
-                        hintText: l10n.searchHint,
-                        hintStyle: GoogleFonts.almarai(color: Colors.grey[400], fontSize: 14),
-                        prefixIcon: const Icon(Icons.search_rounded, color: AppColors.primary),
-                        border: InputBorder.none,
-                        contentPadding: const EdgeInsets.symmetric(vertical: 15),
-                      ),
+                    child: Row(
+                      children: [
+                        Expanded(
+                          child: TextField(
+                            controller: _searchController,
+                            onChanged: (value) => setState(() => _searchQuery = value),
+                            decoration: InputDecoration(
+                              hintText: l10n.searchHint,
+                              hintStyle: GoogleFonts.almarai(color: Colors.grey[400], fontSize: 14),
+                              prefixIcon: const Icon(Icons.search_rounded, color: AppColors.primary),
+                              border: InputBorder.none,
+                              contentPadding: const EdgeInsets.symmetric(vertical: 15),
+                            ),
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: IconButton(
+                            onPressed: () => _showFilterBottomSheet(l10n, isArabic),
+                            icon: const Icon(Icons.tune_rounded, color: AppColors.primary),
+                            style: IconButton.styleFrom(
+                              backgroundColor: AppColors.primary.withOpacity(0.05),
+                              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+                            ),
+                          ),
+                        ),
+                      ],
                     ),
                   ),
                 ),

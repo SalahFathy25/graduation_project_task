@@ -4,6 +4,7 @@ import 'package:graduation_project/features/attractions/domain/entities/attracti
 import 'package:graduation_project/features/home/data/models/trip_model.dart';
 import 'package:graduation_project/features/home/domain/repositories/trip_repository.dart';
 import 'package:graduation_project/features/home/presentation/cubit/home_state.dart';
+import 'package:graduation_project/core/utils/notification_service.dart';
 
 class HomeCubit extends Cubit<HomeState> {
   final TripRepository _tripRepository;
@@ -63,6 +64,13 @@ class HomeCubit extends Cubit<HomeState> {
   Future<void> createTrip(Trip trip) async {
     try {
       await _tripRepository.createTrip(trip);
+      
+      // Trigger Notification
+      await NotificationService.showNotification(
+        id: DateTime.now().millisecond,
+        title: 'تم إنشاء رحلة جديدة! ✈️',
+        body: 'جاهز لمغامرتك في ${trip.city}؟ نتمنى لك رحلة سعيدة!',
+      );
     } catch (e) {
       emit(state.copyWith(errorMessage: e.toString()));
     }
@@ -75,6 +83,13 @@ class HomeCubit extends Cubit<HomeState> {
     try {
       await _tripRepository.updateTrip(updatedTrip);
       emit(state.copyWith(selectedTrip: updatedTrip));
+
+      // Trigger Notification for budget update
+      await NotificationService.showNotification(
+        id: 2,
+        title: 'تحديث الميزانية 💰',
+        body: 'تم تحديث ميزانية رحلة "${updatedTrip.name}" بنجاح.',
+      );
     } catch (e) {
       emit(state.copyWith(errorMessage: e.toString()));
     }
@@ -84,13 +99,46 @@ class HomeCubit extends Cubit<HomeState> {
     if (state.selectedTrip == null) return;
     
     final activities = List<Map<String, dynamic>>.from(state.selectedTrip!.activities)..add(activity);
-    await updateActivities(activities);
+    
+    // Auto-update spent amount
+    double newSpent = 0;
+    for (var act in activities) {
+      newSpent += (act['cost'] ?? 0.0);
+    }
+
+    final updatedTrip = state.selectedTrip!.copyWith(
+      activities: activities,
+      spent: newSpent,
+    );
+
+    try {
+      await _tripRepository.updateTrip(updatedTrip);
+      emit(state.copyWith(selectedTrip: updatedTrip));
+
+      // Notification for adding activity
+      await NotificationService.showNotification(
+        id: 3,
+        title: 'تمت إضافة نشاط جديد 🗓️',
+        body: 'تمت إضافة "${activity['title']}" إلى جدول رحلتك.',
+      );
+    } catch (e) {
+      emit(state.copyWith(errorMessage: e.toString()));
+    }
   }
 
   Future<void> updateActivities(List<Map<String, dynamic>> activities) async {
     if (state.selectedTrip == null) return;
 
-    final updatedTrip = state.selectedTrip!.copyWith(activities: activities);
+    // Recalculate spent amount
+    double newSpent = 0;
+    for (var act in activities) {
+      newSpent += (act['cost'] ?? 0.0);
+    }
+
+    final updatedTrip = state.selectedTrip!.copyWith(
+      activities: activities,
+      spent: newSpent,
+    );
     
     try {
       await _tripRepository.updateTrip(updatedTrip);

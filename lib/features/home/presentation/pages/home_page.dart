@@ -202,10 +202,8 @@ class _HomePageState extends State<HomePage> {
                   ),
                 ),
                 const SizedBox(height: 24),
-                if (state.trips.isNotEmpty) ...[
-                  _buildActiveTripSummary(context, state.trips.first, l10n),
-                  const SizedBox(height: 32),
-                ],
+                _buildPersonalizedSection(context, state, l10n, isArabic),
+                const SizedBox(height: 32),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
@@ -322,6 +320,114 @@ class _HomePageState extends State<HomePage> {
               textAlign: TextAlign.center,
             ),
           ],
+        ),
+      ),
+    );
+  }
+
+  Widget _buildPersonalizedSection(BuildContext context, HomeState state, AppLocalizations l10n, bool isArabic) {
+    final authState = context.read<AuthCubit>().state;
+    if (authState is! Authenticated) {
+      if (state.trips.isNotEmpty) {
+        return _buildActiveTripSummary(context, state.trips.first, l10n);
+      }
+      return const SizedBox.shrink();
+    }
+
+    final user = authState.user;
+    final String travelerType = user.travelerType ?? 'Moderate';
+    final String travelPurpose = user.travelPurpose ?? 'Family';
+
+    // Filter cities based on user profile
+    final allCities = AppConstants.getCities(l10n, isArabic);
+    final suggestedCities = allCities.where((city) {
+      final categories = (city['categories'] as List);
+      final matchesPurpose = categories.any((cat) => cat.toString().toLowerCase() == travelPurpose.toLowerCase());
+      
+      // For traveler type, we might need more logic, but for now we match by category keywords
+      bool matchesType = true;
+      if (travelerType.toLowerCase() == 'luxury') {
+        matchesType = categories.contains('luxury');
+      } else if (travelerType.toLowerCase() == 'economic') {
+        matchesType = !categories.contains('luxury');
+      }
+
+      return matchesPurpose || matchesType;
+    }).toList();
+
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        if (state.trips.isNotEmpty) ...[
+          _buildActiveTripSummary(context, state.trips.first, l10n),
+          const SizedBox(height: 24),
+        ],
+        Text(
+          isArabic ? 'اقتراحات خصيصاً لك' : 'Specially for you',
+          style: GoogleFonts.almarai(fontSize: 18, fontWeight: FontWeight.bold),
+        ),
+        const SizedBox(height: 8),
+        Text(
+          isArabic 
+            ? 'بناءً على تفضيلاتك كمسافر ($travelerType) و غرض ($travelPurpose)'
+            : 'Based on your profile ($travelerType, $travelPurpose)',
+          style: GoogleFonts.almarai(fontSize: 12, color: AppColors.textSecondary),
+        ),
+        const SizedBox(height: 16),
+        SizedBox(
+          height: 140,
+          child: ListView.builder(
+            scrollDirection: Axis.horizontal,
+            itemCount: suggestedCities.length,
+            itemBuilder: (context, index) {
+              final city = suggestedCities[index];
+              return _buildSmallSuggestionCard(context, city);
+            },
+          ),
+        ),
+      ],
+    );
+  }
+
+  Widget _buildSmallSuggestionCard(BuildContext context, Map<String, dynamic> city) {
+    return GestureDetector(
+      onTap: () => Navigator.push(context, MaterialPageRoute(builder: (context) => CityDetailsPage(city: city))),
+      child: Container(
+        width: 240,
+        margin: const EdgeInsets.only(right: 16),
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(20),
+          image: DecorationImage(
+            image: NetworkImage(city['image']),
+            fit: BoxFit.cover,
+          ),
+        ),
+        child: Container(
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(20),
+            gradient: LinearGradient(
+              begin: Alignment.topCenter,
+              end: Alignment.bottomCenter,
+              colors: [Colors.transparent, Colors.black.withOpacity(0.8)],
+            ),
+          ),
+          padding: const EdgeInsets.all(16),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.end,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                city['name'],
+                style: GoogleFonts.almarai(color: Colors.white, fontWeight: FontWeight.bold, fontSize: 16),
+              ),
+              Text(
+                city['desc'],
+                style: GoogleFonts.almarai(color: Colors.white70, fontSize: 11),
+                maxLines: 1,
+                overflow: TextOverflow.ellipsis,
+              ),
+            ],
+          ),
         ),
       ),
     );

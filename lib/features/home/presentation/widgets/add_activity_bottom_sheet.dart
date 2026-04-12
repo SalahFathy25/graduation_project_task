@@ -19,6 +19,7 @@ class _AddActivityBottomSheetState extends State<AddActivityBottomSheet> {
   final TextEditingController _startTimeController = TextEditingController();
   final TextEditingController _endTimeController = TextEditingController();
   final TextEditingController _notesController = TextEditingController();
+  final TextEditingController _costController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -81,7 +82,7 @@ class _AddActivityBottomSheetState extends State<AddActivityBottomSheet> {
               ],
             ),
             const SizedBox(height: 28),
-            _buildField(l10n.dayNumber, Icons.calendar_today_rounded, l10n.dayNumberHint, _dayController),
+            _buildField(l10n.dayNumber, Icons.calendar_today_rounded, l10n.dayNumberHint, _dayController, keyboardType: TextInputType.number),
             _buildField(l10n.activityTitle, Icons.local_activity_rounded, l10n.activityTitleHint, _titleController),
             Row(
               children: [
@@ -90,6 +91,7 @@ class _AddActivityBottomSheetState extends State<AddActivityBottomSheet> {
                 Expanded(child: _buildTimeField(l10n.endTime, Icons.access_time_rounded, _endTimeController)),
               ],
             ),
+            _buildField('التكلفة المتوقعة (ريال)', Icons.attach_money_rounded, 'ادخل التكلفة المتوقعة', _costController, keyboardType: TextInputType.number),
             _buildField(l10n.notes, Icons.notes_rounded, l10n.notesHint, _notesController, maxLines: 3),
             const SizedBox(height: 32),
             SizedBox(
@@ -104,6 +106,7 @@ class _AddActivityBottomSheetState extends State<AddActivityBottomSheet> {
                       'startTime': _startTimeController.text,
                       'endTime': _endTimeController.text,
                       'notes': _notesController.text,
+                      'cost': double.tryParse(_costController.text) ?? 0.0,
                     });
                     Navigator.pop(context);
                   }
@@ -130,7 +133,7 @@ class _AddActivityBottomSheetState extends State<AddActivityBottomSheet> {
     );
   }
 
-  Widget _buildField(String label, IconData icon, String hint, TextEditingController controller, {int maxLines = 1}) {
+  Widget _buildField(String label, IconData icon, String hint, TextEditingController controller, {int maxLines = 1, TextInputType? keyboardType}) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -148,6 +151,7 @@ class _AddActivityBottomSheetState extends State<AddActivityBottomSheet> {
           child: TextField(
             controller: controller,
             maxLines: maxLines,
+            keyboardType: keyboardType,
             style: GoogleFonts.almarai(fontSize: 15, fontWeight: FontWeight.w600),
             decoration: InputDecoration(
               hintText: hint,

@@ -10,11 +10,14 @@ import 'package:graduation_project/features/auth/presentation/pages/auth_wrapper
 import 'package:graduation_project/features/home/data/repositories/trip_repository_impl.dart';
 import 'package:graduation_project/features/home/domain/repositories/trip_repository.dart';
 import 'package:graduation_project/features/home/presentation/cubit/home_cubit.dart';
+import 'package:graduation_project/core/utils/notification_service.dart';
 
 import 'l10n/app_localizations.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+
+  await NotificationService.init();
 
   try {
     await Firebase.initializeApp();
