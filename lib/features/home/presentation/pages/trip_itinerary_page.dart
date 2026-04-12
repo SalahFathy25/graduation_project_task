@@ -250,7 +250,7 @@ class _TripItineraryPageState extends State<TripItineraryPage> with SingleTicker
                           borderRadius: BorderRadius.circular(10),
                         ),
                         child: Text(
-                          '${l10n.day} ${activity['day']}',
+                          '${l10n.day} ${activity['day'] ?? '1'}',
                           style: GoogleFonts.almarai(
                             color: AppColors.primary,
                             fontSize: 11,
@@ -263,7 +263,7 @@ class _TripItineraryPageState extends State<TripItineraryPage> with SingleTicker
                           const Icon(Icons.access_time_rounded, size: 14, color: AppColors.primary),
                           const SizedBox(width: 4),
                           Text(
-                            activity['startTime'] ?? (activity['time'] ?? ''),
+                            (activity['startTime'] ?? activity['time'] ?? '10:00').toString(),
                             style: GoogleFonts.almarai(
                               color: AppColors.primary,
                               fontWeight: FontWeight.bold,
@@ -285,10 +285,10 @@ class _TripItineraryPageState extends State<TripItineraryPage> with SingleTicker
                       color: AppColors.textPrimary,
                     ),
                   ),
-                  if (activity['notes'] != null && activity['notes'].isNotEmpty) ...[
+                  if (activity['notes'] != null && activity['notes'].toString().isNotEmpty) ...[
                     const SizedBox(height: 8),
                     Text(
-                      activity['notes'],
+                      activity['notes'].toString(),
                       style: GoogleFonts.almarai(
                         color: AppColors.textSecondary,
                         fontSize: 13,
@@ -308,7 +308,7 @@ class _TripItineraryPageState extends State<TripItineraryPage> with SingleTicker
                         padding: EdgeInsets.zero,
                       ),
                       Text(
-                        '${l10n.endsAt}: ${activity['endTime'] ?? '-'}',
+                        '${l10n.endsAt}: ${activity['endTime'] ?? '12:00'}',
                         style: GoogleFonts.almarai(
                           color: Colors.grey,
                           fontSize: 11,

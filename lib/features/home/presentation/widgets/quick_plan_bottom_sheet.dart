@@ -305,7 +305,8 @@ class _QuickPlanBottomSheetState extends State<QuickPlanBottomSheet> {
       activities: _selectedActivities.map((a) => {
         'title': a,
         'day': 1,
-        'time': '10:00',
+        'startTime': '10:00',
+        'endTime': '12:00',
         'notes': 'Planned activity'
       }).toList(),
     );
