@@ -228,6 +228,17 @@ class _MyTripsPageState extends State<MyTripsPage> {
                     height: 150,
                     width: double.infinity,
                     fit: BoxFit.cover,
+                    headers: const {
+                      'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36',
+                    },
+                    errorBuilder: (context, error, stackTrace) {
+                      return Container(
+                        height: 150,
+                        width: double.infinity,
+                        color: AppColors.primary.withOpacity(0.1),
+                        child: const Icon(Icons.image_not_supported, color: AppColors.primary),
+                      );
+                    },
                   ),
                 ),
                 Positioned(
