@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:graduation_project/core/theme/app_colors.dart';
+import 'package:graduation_project/core/utils/notification_service.dart';
 import 'package:graduation_project/features/auth/presentation/cubit/auth_cubit.dart';
 import 'package:graduation_project/features/auth/presentation/cubit/auth_state.dart';
 import 'package:graduation_project/features/auth/presentation/pages/auth_wrapper.dart';
@@ -34,6 +35,11 @@ class ProfilePage extends StatelessWidget {
           email = state.user.email;
           type = state.user.travelerType;
           purpose = state.user.travelPurpose;
+        } else if (state is AuthLoading && state.currentUser != null) {
+          name = state.currentUser!.fullName;
+          email = state.currentUser!.email;
+          type = state.currentUser!.travelerType;
+          purpose = state.currentUser!.travelPurpose;
         } else if (state is AuthenticatedGuest) {
           name = isArabic ? "ضيف" : "Guest";
           email = isArabic ? "وضع الضيف" : "Guest Mode";
@@ -97,13 +103,26 @@ class ProfilePage extends StatelessWidget {
                         ),
                       ),
                       const SizedBox(height: 16),
-                      Text(
-                        name,
-                        style: GoogleFonts.almarai(
-                          color: Colors.white,
-                          fontSize: 22,
-                          fontWeight: FontWeight.bold,
-                        ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          const SizedBox(width: 48), // To balance the icon on the right
+                          Text(
+                            name,
+                            style: GoogleFonts.almarai(
+                              color: Colors.white,
+                              fontSize: 22,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                          if (state is Authenticated)
+                            IconButton(
+                              icon: const Icon(Icons.edit, color: Colors.white70, size: 20),
+                              onPressed: () => _showUpdateNameDialog(context, name, isArabic),
+                            )
+                          else
+                            const SizedBox(width: 48),
+                        ],
                       ),
                       if (email.isNotEmpty)
                         Text(
@@ -136,6 +155,11 @@ class ProfilePage extends StatelessWidget {
                         child: ElevatedButton.icon(
                           onPressed: () {
                             context.read<AuthCubit>().logout();
+                            NotificationService.showNotification(
+                              id: 1,
+                              title: isArabic ? 'تسجيل الخروج' : 'Logout',
+                              body: isArabic ? 'نراك قريباً في السعودية!' : 'See you soon in Saudi Arabia!',
+                            );
                           },
                           icon: const Icon(Icons.logout_rounded),
                           label: Text(
@@ -162,6 +186,48 @@ class ProfilePage extends StatelessWidget {
           ),
         );
       },
+    );
+  }
+
+  void _showUpdateNameDialog(BuildContext context, String currentName, bool isArabic) {
+    final controller = TextEditingController(text: currentName);
+    showDialog(
+      context: context,
+      builder: (context) => AlertDialog(
+        title: Text(
+          isArabic ? 'تعديل الاسم' : 'Edit Name',
+          style: GoogleFonts.almarai(fontWeight: FontWeight.bold),
+        ),
+        content: TextField(
+          controller: controller,
+          decoration: InputDecoration(
+            hintText: isArabic ? 'أدخل الاسم الجديد' : 'Enter new name',
+          ),
+          style: GoogleFonts.almarai(),
+        ),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.pop(context),
+            child: Text(
+              isArabic ? 'إلغاء' : 'Cancel',
+              style: GoogleFonts.almarai(color: Colors.grey),
+            ),
+          ),
+          ElevatedButton(
+            onPressed: () {
+              if (controller.text.trim().isNotEmpty) {
+                context.read<AuthCubit>().updateName(controller.text.trim());
+                Navigator.pop(context);
+              }
+            },
+            style: ElevatedButton.styleFrom(backgroundColor: AppColors.primary),
+            child: Text(
+              isArabic ? 'حفظ' : 'Save',
+              style: GoogleFonts.almarai(color: Colors.white),
+            ),
+          ),
+        ],
+      ),
     );
   }
 

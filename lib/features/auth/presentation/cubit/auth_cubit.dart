@@ -78,6 +78,20 @@ class AuthCubit extends Cubit<AuthState> {
     }
   }
 
+  Future<void> updateName(String newName) async {
+    final currentUser = state is Authenticated ? (state as Authenticated).user : null;
+    emit(AuthLoading(currentUser: currentUser));
+    try {
+      await _authRepository.updateProfile(fullName: newName);
+      final user = await _authRepository.getCurrentUser();
+      if (user != null) {
+        emit(Authenticated(user));
+      }
+    } catch (e) {
+      emit(AuthError(e.toString().replaceAll('Exception: ', '')));
+    }
+  }
+
   @override
   Future<void> close() {
     _authSubscription?.cancel();

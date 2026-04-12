@@ -10,7 +10,13 @@ abstract class AuthState extends Equatable {
 
 class AuthInitial extends AuthState {}
 
-class AuthLoading extends AuthState {}
+class AuthLoading extends AuthState {
+  final AppUser? currentUser;
+  const AuthLoading({this.currentUser});
+
+  @override
+  List<Object?> get props => [currentUser];
+}
 
 class Authenticated extends AuthState {
   final AppUser user;

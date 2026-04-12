@@ -6,6 +6,7 @@ import 'package:graduation_project/core/widgets/custom_text_field.dart';
 import 'package:graduation_project/features/auth/presentation/cubit/auth_cubit.dart';
 import 'package:graduation_project/features/auth/presentation/cubit/auth_state.dart';
 import 'package:graduation_project/features/auth/presentation/pages/register_page.dart';
+import 'package:graduation_project/core/utils/notification_service.dart';
 import 'package:graduation_project/features/home/presentation/pages/home_page.dart';
 import 'package:graduation_project/main.dart';
 
@@ -57,6 +58,16 @@ class _LoginPageState extends State<LoginPage> {
               ),
             );
           } else if (state is Authenticated || state is AuthenticatedGuest) {
+            String welcomeMessage = state is AuthenticatedGuest 
+                ? (isArabic ? 'أهلاً بك كضيف' : 'Welcome as Guest')
+                : (isArabic ? 'أهلاً بك مجدداً' : 'Welcome back');
+            
+            NotificationService.showNotification(
+              id: 0,
+              title: l10n.login,
+              body: welcomeMessage,
+            );
+
             Navigator.of(context).pushReplacement(
               MaterialPageRoute(builder: (_) => const HomePage()),
             );

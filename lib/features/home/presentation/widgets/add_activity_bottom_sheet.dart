@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:graduation_project/core/theme/app_colors.dart';
+import 'package:graduation_project/core/utils/notification_service.dart';
 import 'package:graduation_project/features/home/presentation/cubit/home_cubit.dart';
 
 import '../../../../l10n/app_localizations.dart';
@@ -108,6 +109,11 @@ class _AddActivityBottomSheetState extends State<AddActivityBottomSheet> {
                       'notes': _notesController.text,
                       'cost': double.tryParse(_costController.text) ?? 0.0,
                     });
+                    NotificationService.showNotification(
+                      id: DateTime.now().millisecond,
+                      title: l10n.addActivity,
+                      body: 'تم إضافة "${_titleController.text}" إلى مخطط رحلتك بنجاح',
+                    );
                     Navigator.pop(context);
                   }
                 },

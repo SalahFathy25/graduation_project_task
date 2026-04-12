@@ -133,6 +133,24 @@ class AuthRepositoryImpl implements AuthRepository {
     }
   }
 
+  @override
+  Future<void> updateProfile({String? fullName, String? travelerType, String? travelPurpose}) async {
+    final user = _auth.currentUser;
+    if (user == null) return;
+
+    final Map<String, dynamic> updates = {};
+    if (fullName != null) {
+      updates['fullName'] = fullName;
+      await user.updateDisplayName(fullName);
+    }
+    if (travelerType != null) updates['travelerType'] = travelerType;
+    if (travelPurpose != null) updates['travelPurpose'] = travelPurpose;
+
+    if (updates.isNotEmpty) {
+      await _firestore.collection('users').doc(user.uid).update(updates);
+    }
+  }
+
   Exception _handleFirebaseException(firebase.FirebaseException e) {
     switch (e.code) {
       case 'weak-password': return Exception('كلمة المرور ضعيفة جداً.');
