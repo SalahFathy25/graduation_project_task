@@ -196,7 +196,7 @@ class _CityDetailsPageState extends State<CityDetailsPage> {
                   if (topPlaces.isNotEmpty) ...[
                     _buildSectionTitle(l10n.topPlaces),
                     const SizedBox(height: 16),
-                    ...topPlaces.map((place) => _buildLuxuryPlaceItem(place)).toList(),
+                    _buildTopPlacesList(topPlaces),
                     const SizedBox(height: 32),
                   ],
 
@@ -346,30 +346,86 @@ class _CityDetailsPageState extends State<CityDetailsPage> {
     );
   }
 
-  Widget _buildLuxuryPlaceItem(String place) {
+  Widget _buildTopPlacesList(List<String> topPlaces) {
+    return SizedBox(
+      height: 160,
+      child: ListView.builder(
+        scrollDirection: Axis.horizontal,
+        physics: const BouncingScrollPhysics(),
+        itemCount: topPlaces.length,
+        itemBuilder: (context, index) {
+          return _buildTopPlaceCard(topPlaces[index]);
+        },
+      ),
+    );
+  }
+
+  Widget _buildTopPlaceCard(String place) {
     return Container(
-      margin: const EdgeInsets.only(bottom: 12),
-      padding: const EdgeInsets.all(16),
+      width: 160,
+      margin: const EdgeInsets.only(left: 16, bottom: 8),
       decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.circular(16),
-        border: Border.all(color: AppColors.primary.withOpacity(0.05)),
+        gradient: LinearGradient(
+          colors: [
+            Colors.white,
+            AppColors.primary.withOpacity(0.02),
+          ],
+          begin: Alignment.topLeft,
+          end: Alignment.bottomRight,
+        ),
+        borderRadius: BorderRadius.circular(24),
+        border: Border.all(color: AppColors.primary.withOpacity(0.08)),
         boxShadow: [
-          BoxShadow(color: Colors.black.withOpacity(0.02), blurRadius: 10, offset: const Offset(0, 4)),
+          BoxShadow(
+            color: Colors.black.withOpacity(0.03),
+            blurRadius: 15,
+            offset: const Offset(0, 8),
+          ),
         ],
       ),
-      child: Row(
-        children: [
-          const Icon(Icons.stars_rounded, color: AppColors.secondary, size: 24),
-          const SizedBox(width: 16),
-          Expanded(
-            child: Text(
-              place,
-              style: GoogleFonts.almarai(fontSize: 15, fontWeight: FontWeight.w600, color: AppColors.textPrimary),
+      child: ClipRRect(
+        borderRadius: BorderRadius.circular(24),
+        child: Stack(
+          children: [
+            Positioned(
+              right: -15,
+              top: -15,
+              child: Icon(
+                Icons.explore_rounded,
+                size: 70,
+                color: AppColors.primary.withOpacity(0.03),
+              ),
             ),
-          ),
-          Icon(Icons.arrow_forward_ios_rounded, size: 14, color: Colors.grey.withOpacity(0.5)),
-        ],
+            Padding(
+              padding: const EdgeInsets.all(16),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Container(
+                    padding: const EdgeInsets.all(8),
+                    decoration: BoxDecoration(
+                      color: AppColors.secondary.withOpacity(0.1),
+                      shape: BoxShape.circle,
+                    ),
+                    child: const Icon(Icons.location_on_rounded, color: AppColors.secondary, size: 20),
+                  ),
+                  const Spacer(),
+                  Text(
+                    place,
+                    style: GoogleFonts.almarai(
+                      fontSize: 15,
+                      fontWeight: FontWeight.w800,
+                      color: AppColors.textPrimary,
+                      height: 1.3,
+                    ),
+                    maxLines: 2,
+                    overflow: TextOverflow.ellipsis,
+                  ),
+                ],
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }
