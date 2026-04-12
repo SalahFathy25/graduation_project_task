@@ -14,6 +14,8 @@ class AppConstants {
         'weather': '32°C',
         'weatherDesc': isArabic ? 'مشمس' : 'Sunny',
         'categories': ['business', 'luxury'],
+        'lat': 24.7136,
+        'lng': 46.6753,
         'topPlaces': isArabic
             ? ['برج المملكة', 'البوليفارد', 'الدرعية التاريخية', 'حافة العالم']
             : ['Kingdom Tower', 'Boulevard', 'Historic Diriyah', 'Edge of the World'],
@@ -32,6 +34,8 @@ class AppConstants {
         'weather': '30°C',
         'weatherDesc': isArabic ? 'رطب' : 'Humid',
         'categories': ['luxury', 'family'],
+        'lat': 21.4858,
+        'lng': 39.1925,
         'topPlaces': isArabic ? ['كورنيش جدة', 'البلد'] : ['Jeddah Corniche', 'Al-Balad'],
         'activities': isArabic ? {'بحر': ['غوص']} : {'Sea': ['Diving']}
       },
@@ -46,6 +50,8 @@ class AppConstants {
         'weather': '24°C',
         'weatherDesc': isArabic ? 'معتدل' : 'Moderate',
         'categories': ['family', 'nature'],
+        'lat': 21.2851,
+        'lng': 40.4251,
         'topPlaces': isArabic ? ['الهدا', 'الشفا'] : ['Al Hada', 'Ash Shafa'],
         'activities': isArabic ? {'طبيعة': ['مزارع الورد']} : {'Nature': ['Rose Farms']}
       },
@@ -60,6 +66,8 @@ class AppConstants {
         'weather': '28°C',
         'weatherDesc': isArabic ? 'صافي' : 'Clear',
         'categories': ['history', 'adventure'],
+        'lat': 17.4933,
+        'lng': 44.1277,
         'topPlaces': isArabic ? ['الأخدود الأثري'] : ['Archaeological Al-Ukhdood'],
         'activities': isArabic ? {'تاريخ': ['مواقع أثرية']} : {'History': ['Archaeological Sites']}
       },
@@ -74,6 +82,8 @@ class AppConstants {
         'weather': '18°C',
         'weatherDesc': isArabic ? 'بارد' : 'Cold',
         'categories': ['nature', 'adventure'],
+        'lat': 28.3835,
+        'lng': 36.5662,
         'topPlaces': isArabic ? ['وادي الديسة'] : ['Wadi Al Disah'],
         'activities': isArabic ? {'مغامرة': ['وديان']} : {'Adventure': ['Valleys']}
       },
@@ -88,6 +98,8 @@ class AppConstants {
         'weather': '20°C',
         'weatherDesc': isArabic ? 'غائم' : 'Cloudy',
         'categories': ['nature', 'adventure'],
+        'lat': 20.0129,
+        'lng': 41.4677,
         'topPlaces': isArabic ? ['غابة رغدان', 'قرية ذي عين'] : ['Raghadan Forest', 'Thee Ain Village'],
         'activities': isArabic ? {'طبيعة': ['غابات']} : {'Nature': ['Forests']}
       },
@@ -102,6 +114,8 @@ class AppConstants {
         'weather': '22°C',
         'weatherDesc': isArabic ? 'غائم' : 'Cloudy',
         'categories': ['family', 'adventure'],
+        'lat': 18.2164,
+        'lng': 42.5053,
         'topPlaces': isArabic ? ['السودة', 'رجال ألمع'] : ['Al Souda', 'Rijal Almaa'],
         'activities': isArabic ? {'مغامرة': ['تلفريك']} : {'Adventure': ['Teleferic']}
       },
@@ -116,6 +130,8 @@ class AppConstants {
         'weather': '26°C',
         'weatherDesc': isArabic ? 'صافي' : 'Clear',
         'categories': ['luxury', 'business'],
+        'lat': 28.0000,
+        'lng': 35.0000,
         'topPlaces': isArabic ? ['ذا لاين'] : ['The Line'],
         'activities': isArabic ? {'مستقبل': ['تجارب تقنية']} : {'Future': ['Tech Experiences']}
       },
@@ -130,6 +146,8 @@ class AppConstants {
         'weather': '28°C',
         'weatherDesc': isArabic ? 'رطب' : 'Humid',
         'categories': ['family', 'luxury'],
+        'lat': 26.4207,
+        'lng': 50.0888,
         'topPlaces': isArabic ? ['كورنيش الخبر'] : ['Khobar Corniche'],
         'activities': isArabic ? {'بحر': ['سباحة']} : {'Sea': ['Swimming']}
       },
@@ -144,6 +162,8 @@ class AppConstants {
         'weather': '30°C',
         'weatherDesc': isArabic ? 'حار رطب' : 'Hot & Humid',
         'categories': ['nature', 'adventure'],
+        'lat': 16.8892,
+        'lng': 42.5511,
         'topPlaces': isArabic ? ['جزر فرسان'] : ['Farasan Islands'],
         'activities': isArabic ? {'طبيعة': ['استوائية']} : {'Nature': ['Tropical']}
       },
@@ -158,6 +178,8 @@ class AppConstants {
         'weather': '29°C',
         'weatherDesc': isArabic ? 'مشمس' : 'Sunny',
         'categories': ['nature', 'adventure'],
+        'lat': 16.7000,
+        'lng': 42.1167,
         'topPlaces': isArabic ? ['الشواطئ البكر'] : ['Pristine Beaches'],
         'activities': isArabic ? {'بحر': ['غوص']} : {'Sea': ['Diving']}
       },
@@ -172,6 +194,8 @@ class AppConstants {
         'weather': '28°C',
         'weatherDesc': isArabic ? 'صافي' : 'Clear',
         'categories': ['adventure', 'luxury'],
+        'lat': 26.6200,
+        'lng': 37.9231,
         'topPlaces': isArabic ? ['مدائن صالح'] : ['Madain Salih'],
         'activities': isArabic ? {'مغامرة': ['منطاد']} : {'Adventure': ['Hot Air Balloon']}
       },
@@ -186,6 +210,8 @@ class AppConstants {
         'weather': '35°C',
         'weatherDesc': isArabic ? 'حار' : 'Hot',
         'categories': ['religious'],
+        'lat': 21.3891,
+        'lng': 39.8579,
         'topPlaces': isArabic ? ['المسجد الحرام'] : ['Grand Mosque'],
         'activities': isArabic ? {'ديني': ['عمرة']} : {'Religious': ['Umrah']}
       },
@@ -200,6 +226,8 @@ class AppConstants {
         'weather': '30°C',
         'weatherDesc': isArabic ? 'صافي' : 'Clear',
         'categories': ['religious'],
+        'lat': 24.4672,
+        'lng': 39.6108,
         'topPlaces': isArabic ? ['المسجد النبوي'] : ['Prophet\'s Mosque'],
         'activities': isArabic ? {'ديني': ['زيارة']} : {'Religious': ['Visiting']}
       },

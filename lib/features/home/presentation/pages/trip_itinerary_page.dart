@@ -5,7 +5,9 @@ import 'package:graduation_project/core/theme/app_colors.dart';
 import 'package:graduation_project/features/home/data/models/trip_model.dart';
 import 'package:graduation_project/features/home/presentation/cubit/home_cubit.dart';
 import 'package:graduation_project/features/home/presentation/cubit/home_state.dart';
-import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:graduation_project/core/utils/app_constants.dart';
+import 'package:flutter_map/flutter_map.dart';
+import 'package:latlong2/latlong.dart' as ll;
 
 import '../../../../l10n/app_localizations.dart';
 
@@ -19,63 +21,49 @@ class TripItineraryPage extends StatefulWidget {
 
 class _TripItineraryPageState extends State<TripItineraryPage> with SingleTickerProviderStateMixin {
   late TabController _tabController;
-  GoogleMapController? _mapController;
-  final Set<Marker> _markers = {};
+  final MapController _mapController = MapController();
+  final List<Marker> _markers = [];
 
-  // Mock coordinates for cities
-  final Map<String, LatLng> _cityCoordinates = {
-    'Riyadh': const LatLng(24.7136, 46.6753),
-    'الرياض': const LatLng(24.7136, 46.6753),
-    'Jeddah': const LatLng(21.4858, 39.1925),
-    'جدة': const LatLng(21.4858, 39.1925),
-    'AlUla': const LatLng(26.6200, 37.9231),
-    'العلا': const LatLng(26.6200, 37.9231),
-    'Abha': const LatLng(18.2164, 42.5053),
-    'أبها': const LatLng(18.2164, 42.5053),
-  };
+  // Coordinates will be fetched from AppConstants
+  ll.LatLng _getCityCenter(String cityName, AppLocalizations l10n) {
+    final isArabic = l10n.localeName == 'ar';
+    final cities = AppConstants.getCities(l10n, isArabic);
+    
+    try {
+      final city = cities.firstWhere(
+        (c) => c['name'].toString().toLowerCase() == cityName.toLowerCase() || 
+               c['id'].toString().toLowerCase() == cityName.toLowerCase()
+      );
+      return ll.LatLng(city['lat'], city['lng']);
+    } catch (e) {
+      return const ll.LatLng(24.7136, 46.6753); // Default to Riyadh
+    }
+  }
 
   @override
   void initState() {
     super.initState();
     _tabController = TabController(length: 2, vsync: this);
-    _loadMarkers();
   }
 
-  void _loadMarkers() {
-    final cityLatLng = _cityCoordinates[widget.trip.city] ?? const LatLng(24.7136, 46.6753);
-    
+  void _loadMarkers(AppLocalizations l10n) {
+    final cityLatLng = _getCityCenter(widget.trip.city, l10n);
+
     _markers.clear();
     _markers.add(
       Marker(
-        markerId: const MarkerId('city_center'),
-        position: cityLatLng,
-        infoWindow: InfoWindow(title: widget.trip.city),
+        point: cityLatLng,
+        width: 40,
+        height: 40,
+        child: const Icon(Icons.location_on, color: Colors.red, size: 40),
       ),
     );
-
-    for (var i = 0; i < widget.trip.activities.length; i++) {
-      final activity = widget.trip.activities[i];
-      final latOffset = (i + 1) * 0.01;
-      final lngOffset = (i + 1) * 0.01;
-      
-      _markers.add(
-        Marker(
-          markerId: MarkerId('activity_$i'),
-          position: LatLng(cityLatLng.latitude + latOffset, cityLatLng.longitude + lngOffset),
-          infoWindow: InfoWindow(
-            title: activity['title'],
-            snippet: '${activity['startTime']} - ${activity['endTime']}',
-          ),
-          icon: BitmapDescriptor.defaultMarkerWithHue(BitmapDescriptor.hueAzure),
-        ),
-      );
-    }
   }
 
   @override
   void dispose() {
     _tabController.dispose();
-    _mapController?.dispose();
+    _mapController.dispose();
     super.dispose();
   }
 
@@ -120,7 +108,7 @@ class _TripItineraryPageState extends State<TripItineraryPage> with SingleTicker
             controller: _tabController,
             children: [
               _buildListView(activities, l10n),
-              _buildMapView(currentTrip),
+              _buildMapView(currentTrip, l10n),
             ],
           ),
         );
@@ -162,19 +150,25 @@ class _TripItineraryPageState extends State<TripItineraryPage> with SingleTicker
     );
   }
 
-  Widget _buildMapView(Trip trip) {
-    final cityLatLng = _cityCoordinates[trip.city] ?? const LatLng(24.7136, 46.6753);
-    _loadMarkers(); // Update markers when trip changes
-    
-    return GoogleMap(
-      initialCameraPosition: CameraPosition(
-        target: cityLatLng,
-        zoom: 12,
+  Widget _buildMapView(Trip trip, AppLocalizations l10n) {
+    final cityLatLng = _getCityCenter(trip.city, l10n);
+    _loadMarkers(l10n);
+
+    return FlutterMap(
+      mapController: _mapController,
+      options: MapOptions(
+        initialCenter: cityLatLng,
+        initialZoom: 12,
       ),
-      onMapCreated: (controller) => _mapController = controller,
-      markers: _markers,
-      myLocationButtonEnabled: false,
-      zoomControlsEnabled: true,
+      children: [
+        TileLayer(
+          urlTemplate: 'https://tile.openstreetmap.org/{z}/{x}/{y}.png',
+          userAgentPackageName: 'com.example.graduation_project',
+        ),
+        MarkerLayer(
+          markers: _markers,
+        ),
+      ],
     );
   }
 
