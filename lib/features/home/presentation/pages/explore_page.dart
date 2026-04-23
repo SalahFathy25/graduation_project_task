@@ -195,15 +195,31 @@ class _ExplorePageState extends State<ExplorePage> {
     final recommendedCities = allCities.where((city) {
       if (userPurpose == null) return false;
       final cityCategories = city['categories'] as List;
+      final cityName = city['name'].toLowerCase();
 
-      // Match city categories with user purpose
+      // Enhanced Recommendation Logic
       if (userPurpose!.toLowerCase().contains('adventure') || userPurpose!.contains('مغامرة')) {
+        // Prioritize Abha and Jeddah for adventurers
+        if (cityName.contains('abha') || cityName.contains('أبها') || 
+            cityName.contains('jeddah') || cityName.contains('جدة')) {
+          return true;
+        }
         return cityCategories.contains('adventure');
       }
       if (userPurpose!.toLowerCase().contains('family') || userPurpose!.contains('عائلة')) {
+        // Prioritize Taif and Riyadh for families
+        if (cityName.contains('taif') || cityName.contains('طائف') || 
+            cityName.contains('riyadh') || cityName.contains('رياض')) {
+          return true;
+        }
         return cityCategories.contains('family');
       }
       if (userPurpose!.toLowerCase().contains('religious') || userPurpose!.contains('ديني')) {
+        // Prioritize Mecca and Medina for religious travelers
+        if (cityName.contains('mecca') || cityName.contains('مكة') || 
+            cityName.contains('medina') || cityName.contains('مدينة')) {
+          return true;
+        }
         return cityCategories.contains('religious');
       }
       if (userPurpose!.toLowerCase().contains('business') || userPurpose!.contains('أعمال')) {
@@ -211,6 +227,30 @@ class _ExplorePageState extends State<ExplorePage> {
       }
       return false;
     }).toList();
+
+    // Sort recommendations to put prioritized cities first
+    recommendedCities.sort((a, b) {
+      final aName = a['name'].toLowerCase();
+      final bName = b['name'].toLowerCase();
+
+      if (userPurpose!.toLowerCase().contains('adventure') || userPurpose!.contains('مغامرة')) {
+        bool aPri = aName.contains('abha') || aName.contains('أبها') || aName.contains('jeddah') || aName.contains('جدة');
+        bool bPri = bName.contains('abha') || bName.contains('أبها') || bName.contains('jeddah') || bName.contains('جدة');
+        if (aPri && !bPri) return -1;
+        if (!aPri && bPri) return 1;
+      } else if (userPurpose!.toLowerCase().contains('family') || userPurpose!.contains('عائلة')) {
+        bool aPri = aName.contains('taif') || aName.contains('طائف') || aName.contains('riyadh') || aName.contains('رياض');
+        bool bPri = bName.contains('taif') || bName.contains('طائف') || bName.contains('riyadh') || bName.contains('رياض');
+        if (aPri && !bPri) return -1;
+        if (!aPri && bPri) return 1;
+      } else if (userPurpose!.toLowerCase().contains('religious') || userPurpose!.contains('ديني')) {
+        bool aPri = aName.contains('mecca') || aName.contains('مكة') || aName.contains('medina') || aName.contains('مدينة');
+        bool bPri = bName.contains('mecca') || bName.contains('مكة') || bName.contains('medina') || bName.contains('مدينة');
+        if (aPri && !bPri) return -1;
+        if (!aPri && bPri) return 1;
+      }
+      return 0;
+    });
 
     final filteredCities = allCities.where((city) {
       final matchesRegion = _selectedRegion == 'all' || city['region'] == _selectedRegion;

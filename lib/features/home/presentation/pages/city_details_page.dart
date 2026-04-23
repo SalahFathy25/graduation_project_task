@@ -181,6 +181,34 @@ class _CityDetailsPageState extends State<CityDetailsPage> {
                   _buildLuxuryInfoCard(l10n),
                   const SizedBox(height: 32),
 
+                  if (widget.city.containsKey('gallery') && (widget.city['gallery'] as List).isNotEmpty) ...[
+                    _buildSectionTitle(l10n.localeName == 'ar' ? 'معرض الصور' : 'Photo Gallery'),
+                    const SizedBox(height: 16),
+                    SizedBox(
+                      height: 200,
+                      child: ListView.builder(
+                        scrollDirection: Axis.horizontal,
+                        physics: const BouncingScrollPhysics(),
+                        itemCount: (widget.city['gallery'] as List).length,
+                        itemBuilder: (context, index) {
+                          final imageUrl = widget.city['gallery'][index];
+                          return Container(
+                            width: 300,
+                            margin: const EdgeInsets.only(left: 16),
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(24),
+                              image: DecorationImage(
+                                image: NetworkImage(imageUrl),
+                                fit: BoxFit.cover,
+                              ),
+                            ),
+                          );
+                        },
+                      ),
+                    ),
+                    const SizedBox(height: 32),
+                  ],
+
                   _buildSectionTitle(l10n.aboutCity),
                   const SizedBox(height: 16),
                   Text(
