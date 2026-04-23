@@ -24,8 +24,24 @@ class AppConstants {
         'lat': 24.7136,
         'lng': 46.6753,
         'topPlaces': isArabic
-            ? ['برج المملكة', 'البوليفارد', 'الدرعية التاريخية', 'حافة العالم', 'قصر المصمك', 'حديقة الملك عبد الله', 'سوق الزل']
-            : ['Kingdom Tower', 'Boulevard', 'Historic Diriyah', 'Edge of the World', 'Masmak Fort', 'King Abdullah Park', 'Souq Al-Zal'],
+            ? [
+                'برج المملكة',
+                'البوليفارد',
+                'الدرعية التاريخية',
+                'حافة العالم',
+                'قصر المصمك',
+                'حديقة الملك عبد الله',
+                'سوق الزل'
+              ]
+            : [
+                'Kingdom Tower',
+                'Boulevard',
+                'Historic Diriyah',
+                'Edge of the World',
+                'Masmak Fort',
+                'King Abdullah Park',
+                'Souq Al-Zal'
+              ],
         'activities': isArabic
             ? {
                 'ترفيه': ['موسم الرياض', 'سينما', 'مدن ملاهي'],
@@ -60,8 +76,24 @@ class AppConstants {
         'lat': 21.4858,
         'lng': 39.1925,
         'topPlaces': isArabic
-            ? ['كورنيش جدة', 'البلد', 'نافورة الملك فهد', 'فقيه أكواريوم', 'رد سي مول', 'المسجد العائم', 'شاطئ السيف']
-            : ['Jeddah Corniche', 'Al-Balad', 'King Fahd\'s Fountain', 'Fakieh Aquarium', 'Red Sea Mall', 'Floating Mosque', 'Al-Saif Beach'],
+            ? [
+                'كورنيش جدة',
+                'البلد',
+                'نافورة الملك فهد',
+                'فقيه أكواريوم',
+                'رد سي مول',
+                'المسجد العائم',
+                'شاطئ السيف'
+              ]
+            : [
+                'Jeddah Corniche',
+                'Al-Balad',
+                'King Fahd\'s Fountain',
+                'Fakieh Aquarium',
+                'Red Sea Mall',
+                'Floating Mosque',
+                'Al-Saif Beach'
+              ],
         'activities': isArabic
             ? {
                 'بحر': ['غوص', 'رحلات بحرية', 'صيد سمك', 'جت سكي'],
@@ -77,7 +109,8 @@ class AppConstants {
       {
         'id': 'taif',
         'name': isArabic ? l10n.cityTaif : 'Taif',
-        'image': 'https://goldenhost.co/blog/wp-content/uploads/2025/03/%D8%BA%D8%BA%D9%81%D9%81%D8%B9%D9%81%D8%B9%D8%B9%D9%81%D8%B9%D9%81-1024x576.jpg',
+        'image':
+            'https://goldenhost.co/blog/wp-content/uploads/2025/03/%D8%BA%D8%BA%D9%81%D9%81%D8%B9%D9%81%D8%B9%D8%B9%D9%81%D8%B9%D9%81-1024x576.jpg',
         'desc': isArabic ? l10n.taifDesc : 'The Bride of Resorts.',
         'location': isArabic ? l10n.locationTaif : 'Western Saudi Arabia',
         'region': 'western',
@@ -95,7 +128,14 @@ class AppConstants {
         'lng': 40.4251,
         'topPlaces': isArabic
             ? ['الهدا', 'الشفا', 'سوق عكاظ', 'حديقة الردف', 'قصر شبرا', 'تلفريك الهدا']
-            : ['Al Hada', 'Ash Shafa', 'Souq Okaz', 'Ar Ruddaf Park', 'Shubra Palace', 'Taif Cable Car'],
+            : [
+                'Al Hada',
+                'Ash Shafa',
+                'Souq Okaz',
+                'Ar Ruddaf Park',
+                'Shubra Palace',
+                'Taif Cable Car'
+              ],
         'activities': isArabic
             ? {
                 'طبيعة': ['مزارع الورد', 'منتزهات جبلية'],
@@ -111,7 +151,8 @@ class AppConstants {
       {
         'id': 'najran',
         'name': isArabic ? l10n.cityNajran : 'Najran',
-        'image': 'https://media.gettyimages.com/id/1455349081/photo/saudi-arabia-najran-province-najran-aerial-view-of-historic-al-aan-palace.jpg?s=612x612&w=0&k=20&c=eMI1Rot-1OaGrsE1cuCfS_x4VySKOvu9Q_Fd5YzD0ow=',
+        'image':
+            'https://media.gettyimages.com/id/1455349081/photo/saudi-arabia-najran-province-najran-aerial-view-of-historic-al-aan-palace.jpg?s=612x612&w=0&k=20&c=eMI1Rot-1OaGrsE1cuCfS_x4VySKOvu9Q_Fd5YzD0ow=',
         'desc': isArabic ? l10n.najranDesc : 'Ancient Historic City.',
         'location': isArabic ? l10n.locationNajran : 'Southern Saudi Arabia',
         'region': 'southern',
@@ -127,8 +168,20 @@ class AppConstants {
         'lat': 17.4933,
         'lng': 44.1277,
         'topPlaces': isArabic
-            ? ['الأخدود الأثري', 'قصر الإمارة التاريخي', 'سد وادي نجران', 'منتزه الملك فهد', 'غابة سقام']
-            : ['Archaeological Al-Ukhdood', 'Historical Emarah Palace', 'Najran Valley Dam', 'King Fahd Park', 'Saqam Forest'],
+            ? [
+                'الأخدود الأثري',
+                'قصر الإمارة التاريخي',
+                'سد وادي نجران',
+                'منتزه الملك فهد',
+                'غابة سقام'
+              ]
+            : [
+                'Archaeological Al-Ukhdood',
+                'Historical Emarah Palace',
+                'Najran Valley Dam',
+                'King Fahd Park',
+                'Saqam Forest'
+              ],
         'activities': isArabic
             ? {
                 'تاريخ': ['مواقع أثرية', 'زيارة متاحف'],
@@ -144,7 +197,8 @@ class AppConstants {
       {
         'id': 'tabuk',
         'name': isArabic ? l10n.cityTabuk : 'Tabuk',
-        'image': 'https://saudipedia.com/var/site/storage/images/2/8/6/7/4347682-1-ara-SA/4eeb5ebd3b99-65618.jpg',
+        'image':
+            'https://saudipedia.com/var/site/storage/images/2/8/6/7/4347682-1-ara-SA/4eeb5ebd3b99-65618.jpg',
         'desc': isArabic ? l10n.tabukDesc : 'Gateway to the North.',
         'location': isArabic ? l10n.locationTabuk : 'Northern Saudi Arabia',
         'region': 'northern',
@@ -162,7 +216,14 @@ class AppConstants {
         'lng': 36.5662,
         'topPlaces': isArabic
             ? ['وادي الديسة', 'جبل اللوز', 'قلعة تبوك', 'متحف سكة الحديد', 'شاطئ قيال', 'عين السكر']
-            : ['Wadi Al Disah', 'Jabal Al-Lawz', 'Tabuk Castle', 'Railway Museum', 'Qiyal Beach', 'Ain Al-Sukkar'],
+            : [
+                'Wadi Al Disah',
+                'Jabal Al-Lawz',
+                'Tabuk Castle',
+                'Railway Museum',
+                'Qiyal Beach',
+                'Ain Al-Sukkar'
+              ],
         'activities': isArabic
             ? {
                 'مغامرة': ['وديان', 'تخييم شتوي', 'هايكنج'],
@@ -178,7 +239,8 @@ class AppConstants {
       {
         'id': 'baha',
         'name': isArabic ? l10n.cityBaha : 'Al Baha',
-        'image': 'https://bahaadmin.baha.gov.sa/Uploads/Images/26982915-6221-4577-ae49-783540b77467_WhatsApp%20Image%202023-01-14%20at%207.26.24%20PM%20(1).jpeg',
+        'image':
+            'https://bahaadmin.baha.gov.sa/Uploads/Images/26982915-6221-4577-ae49-783540b77467_WhatsApp%20Image%202023-01-14%20at%207.26.24%20PM%20(1).jpeg',
         'desc': isArabic ? l10n.bahaDesc : 'The Pearl of the Mountains.',
         'location': isArabic ? l10n.locationBaha : 'Southwestern Saudi Arabia',
         'region': 'southern',
@@ -196,7 +258,13 @@ class AppConstants {
         'lng': 41.4677,
         'topPlaces': isArabic
             ? ['غابة رغدان', 'قرية ذي عين', 'منتزه القيم', 'غابة خيرة', 'سد الملح']
-            : ['Raghadan Forest', 'Thee Ain Village', 'Al-Qaym Park', 'Khaira Forest', 'Al-Malad Dam'],
+            : [
+                'Raghadan Forest',
+                'Thee Ain Village',
+                'Al-Qaym Park',
+                'Khaira Forest',
+                'Al-Malad Dam'
+              ],
         'activities': isArabic
             ? {
                 'طبيعة': ['غابات', 'نزهات جبلية', 'مشاهدة شلالات'],
@@ -210,7 +278,8 @@ class AppConstants {
       {
         'id': 'abha',
         'name': isArabic ? l10n.cityAbha : 'Abha',
-        'image': 'https://imgs.search.brave.com/DorlFb3ge3AyW55M6d8146QQy4L4midmisfemf1Wkfk/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9jbm4t/YXJhYmljLWltYWdl/cy5jbm4uaW8vY2xv/dWRpbmFyeS9pbWFn/ZS91cGxvYWQvd18x/OTIwLGNfc2NhbGUs/cV9hdXRvL2NubmFy/YWJpYy8yMDIxLzA1/LzA0L2ltYWdlcy8x/ODQxNDAuanBn',
+        'image':
+            'https://imgs.search.brave.com/DorlFb3ge3AyW55M6d8146QQy4L4midmisfemf1Wkfk/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9jbm4t/YXJhYmljLWltYWdl/cy5jbm4uaW8vY2xv/dWRpbmFyeS9pbWFn/ZS91cGxvYWQvd18x/OTIwLGNfc2NhbGUs/cV9hdXRvL2NubmFy/YWJpYy8yMDIxLzA1/LzA0L2ltYWdlcy8x/ODQxNDAuanBn',
         'desc': isArabic ? l10n.abhaDesc : 'The City of Fog.',
         'location': isArabic ? l10n.locationAbha : 'Southwestern Saudi Arabia',
         'region': 'southern',
@@ -228,7 +297,14 @@ class AppConstants {
         'lng': 42.5053,
         'topPlaces': isArabic
             ? ['السودة', 'رجال ألمع', 'الجبل الأخضر', 'حديقة أبو خيال', 'سد أبها', 'سوق الثلاثاء']
-            : ['Al Souda', 'Rijal Almaa', 'Green Mountain', 'Abu Kheyal Park', 'Abha Dam', 'Tuesday Market'],
+            : [
+                'Al Souda',
+                'Rijal Almaa',
+                'Green Mountain',
+                'Abu Kheyal Park',
+                'Abha Dam',
+                'Tuesday Market'
+              ],
         'activities': isArabic
             ? {
                 'مغامرة': ['تلفريك', 'باراجلايدنج', 'هايكنج في السودة'],
@@ -244,7 +320,8 @@ class AppConstants {
       {
         'id': 'neom',
         'name': isArabic ? l10n.cityNeom : 'NEOM',
-        'image': 'http://dealapp.sa/blog/wp-content/uploads/2023/05/%D9%85%D8%B4%D8%B1%D9%88%D8%B9-%D9%86%D9%8A%D9%88%D9%85.png',
+        'image':
+            'http://dealapp.sa/blog/wp-content/uploads/2023/05/%D9%85%D8%B4%D8%B1%D9%88%D8%B9-%D9%86%D9%8A%D9%88%D9%85.png',
         'desc': isArabic ? l10n.neomDesc : 'The City of the Future.',
         'location': isArabic ? l10n.locationNeom : 'Northwestern Saudi Arabia',
         'region': 'northwestern',
@@ -278,7 +355,8 @@ class AppConstants {
       {
         'id': 'dammam',
         'name': isArabic ? 'الدمام' : 'Dammam',
-        'image': 'http://dealapp.sa/blog/wp-content/uploads/2020/05/%D8%AC%D8%B2%D9%8A%D8%B1%D8%A9-%D8%A7%D9%84%D9%85%D8%B1%D8%AC%D8%A7%D9%86-4.jpg',
+        'image':
+            'http://dealapp.sa/blog/wp-content/uploads/2020/05/%D8%AC%D8%B2%D9%8A%D8%B1%D8%A9-%D8%A7%D9%84%D9%85%D8%B1%D8%AC%D8%A7%D9%86-4.jpg',
         'desc': isArabic ? l10n.dammamDesc : 'Coastal Eastern City.',
         'location': isArabic ? l10n.locationDammamKhobar : 'Eastern Saudi Arabia',
         'region': 'eastern',
@@ -295,8 +373,22 @@ class AppConstants {
         'lat': 26.4207,
         'lng': 50.0888,
         'topPlaces': isArabic
-            ? ['كورنيش الخبر', 'جزيرة المرجان', 'قرية الألعاب', 'سايتك', 'شاطئ نصف القمر', 'مجمع الراشد']
-            : ['Khobar Corniche', 'Marjan Island', 'Toy Town', 'Scitech', 'Half Moon Bay', 'Al-Rashid Mall'],
+            ? [
+                'كورنيش الخبر',
+                'جزيرة المرجان',
+                'قرية الألعاب',
+                'سايتك',
+                'شاطئ نصف القمر',
+                'مجمع الراشد'
+              ]
+            : [
+                'Khobar Corniche',
+                'Marjan Island',
+                'Toy Town',
+                'Scitech',
+                'Half Moon Bay',
+                'Al-Rashid Mall'
+              ],
         'activities': isArabic
             ? {
                 'بحر': ['سباحة', 'رحلات بحرية', 'جت سكي'],
@@ -312,7 +404,8 @@ class AppConstants {
       {
         'id': 'jazan',
         'name': isArabic ? l10n.cityJazan : 'Jazan',
-        'image': 'https://saudipedia.com/var/site/storage/images/2/2/8/9/5539822-1-ara-SA/e918debaf9ba-65707.jpg',
+        'image':
+            'https://saudipedia.com/var/site/storage/images/2/2/8/9/5539822-1-ara-SA/e918debaf9ba-65707.jpg',
         'desc': isArabic ? l10n.jazanDesc : 'Nature and Environment Diversity.',
         'location': isArabic ? l10n.locationJazan : 'Southwestern Saudi Arabia',
         'region': 'southern',
@@ -328,7 +421,13 @@ class AppConstants {
         'lng': 42.5511,
         'topPlaces': isArabic
             ? ['جزر فرسان', 'جبال فيفا', 'وادي لجب', 'القرية التراثية', 'شاطئ جازان']
-            : ['Farasan Islands', 'Fayfa Mountains', 'Wadi Lajab', 'Heritage Village', 'Jazan Beach'],
+            : [
+                'Farasan Islands',
+                'Fayfa Mountains',
+                'Wadi Lajab',
+                'Heritage Village',
+                'Jazan Beach'
+              ],
         'activities': isArabic
             ? {
                 'طبيعة': ['استوائية', 'هايكنج في فيفا', 'استكشاف وادي لجب'],
@@ -342,7 +441,8 @@ class AppConstants {
       {
         'id': 'farasan',
         'name': isArabic ? l10n.cityFarasan : 'Farasan Islands',
-        'image': 'https://imgs.search.brave.com/EE0nknbTw7CswoJ-pscCrJij6Onv7uQOjRfPSUHCVWU/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9jbm4t/YXJhYmljLWltYWdl/cy5jbm4uaW8vY2xv/dWRpbmFyeS9pbWFn/ZS91cGxvYWQvd185/MjQsaF81MjAsY19m/aWxsLHFfYXV0byxn/X2NlbnRlci9jbm5h/cmFiaWMvMjAyMS8w/OS8xNi9pbWFnZXMv/MTkzNjg1LmpwZw',
+        'image':
+            'https://imgs.search.brave.com/EE0nknbTw7CswoJ-pscCrJij6Onv7uQOjRfPSUHCVWU/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9jbm4t/YXJhYmljLWltYWdl/cy5jbm4uaW8vY2xv/dWRpbmFyeS9pbWFn/ZS91cGxvYWQvd185/MjQsaF81MjAsY19m/aWxsLHFfYXV0byxn/X2NlbnRlci9jbm5h/cmFiaWMvMjAyMS8w/OS8xNi9pbWFnZXMv/MTkzNjg1LmpwZw',
         'desc': isArabic ? l10n.farasanDesc : 'Pristine Archipelago.',
         'location': isArabic ? l10n.locationFarasan : 'Near Jazan',
         'region': 'southern',
@@ -359,7 +459,13 @@ class AppConstants {
         'lng': 42.1167,
         'topPlaces': isArabic
             ? ['الشواطئ البكر', 'بيت الجرمل', 'القلعة العثمانية', 'غابة القندل', 'شاطئ جنابة']
-            : ['Pristine Beaches', 'Beit Al-Jarmal', 'Ottoman Fort', 'Qandal Forest', 'Janaba Beach'],
+            : [
+                'Pristine Beaches',
+                'Beit Al-Jarmal',
+                'Ottoman Fort',
+                'Qandal Forest',
+                'Janaba Beach'
+              ],
         'activities': isArabic
             ? {
                 'بحر': ['غوص', 'مشاهدة الغزلان', 'صيد اللؤلؤ'],
@@ -373,7 +479,8 @@ class AppConstants {
       {
         'id': 'alula',
         'name': isArabic ? l10n.cityAlUla : 'AlUla',
-        'image': 'https://cms.factmagazines.com/wp-content/uploads/2024/03/Elephant-Rock-AlUla.jpeg',
+        'image':
+            'https://cms.factmagazines.com/wp-content/uploads/2024/03/Elephant-Rock-AlUla.jpeg',
         'desc': isArabic ? l10n.alUlaDesc : 'Historic Oasis.',
         'location': isArabic ? l10n.locationAlUla : 'Northwestern Saudi Arabia',
         'region': 'northwestern',
@@ -407,7 +514,8 @@ class AppConstants {
       {
         'id': 'mecca',
         'name': isArabic ? l10n.cityMecca : 'Mecca',
-        'image': 'https://imgs.search.brave.com/1HqcI-ZqcocK-9R1mKrm95mP3PBPAhh_1WEQJ0lkJu0/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9wbmcu/cG5ndHJlZS5jb20v/dGh1bWJfYmFjay9m/aDI2MC9iYWNrZ3Jv/dW5kLzIwMjMwNTI3/L3BuZ3RyZWUtdGhl/LWxhcmdlLWlzbGFt/aWMtbW9zcXVlLWlu/LXRoZS1ob2x5LWNp/dHktb2YtbWVjY2Et/YXQtaW1hZ2VfMjY5/MjQ5Ni5qcGc',
+        'image':
+            'https://imgs.search.brave.com/1HqcI-ZqcocK-9R1mKrm95mP3PBPAhh_1WEQJ0lkJu0/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9wbmcu/cG5ndHJlZS5jb20v/dGh1bWJfYmFjay9m/aDI2MC9iYWNrZ3Jv/dW5kLzIwMjMwNTI3/L3BuZ3RyZWUtdGhl/LWxhcmdlLWlzbGFt/aWMtbW9zcXVlLWlu/LXRoZS1ob2x5LWNp/dHktb2YtbWVjY2Et/YXQtaW1hZ2VfMjY5/MjQ5Ni5qcGc',
         'desc': isArabic ? l10n.meccaDesc : 'The Holiest City.',
         'location': isArabic ? l10n.locationMecca : 'Western Saudi Arabia',
         'region': 'western',
@@ -424,8 +532,24 @@ class AppConstants {
         'lat': 21.3891,
         'lng': 39.8579,
         'topPlaces': isArabic
-            ? ['المسجد الحرام', 'جبل النور', 'غار حراء', 'مزدلفة', 'جبل عرفات', 'ساعة مكة', 'بئر زمزم']
-            : ['Grand Mosque', 'Jabal al-Nour', 'Hira Cave', 'Muzdalifah', 'Mount Arafat', 'Makkah Clock Tower', 'Zamzam Well'],
+            ? [
+                'المسجد الحرام',
+                'جبل النور',
+                'غار حراء',
+                'مزدلفة',
+                'جبل عرفات',
+                'ساعة مكة',
+                'بئر زمزم'
+              ]
+            : [
+                'Grand Mosque',
+                'Jabal al-Nour',
+                'Hira Cave',
+                'Muzdalifah',
+                'Mount Arafat',
+                'Makkah Clock Tower',
+                'Zamzam Well'
+              ],
         'activities': isArabic
             ? {
                 'ديني': ['عمرة', 'زيارة المشاعر المقدسة'],
@@ -439,7 +563,8 @@ class AppConstants {
       {
         'id': 'medina',
         'name': isArabic ? l10n.cityMedina : 'Medina',
-        'image': 'https://static.srpcdigital.com/styles/1037xauto/public/2014/04/01/1395849838834267800.jpg.webp',
+        'image':
+            'https://static.srpcdigital.com/styles/1037xauto/public/2014/04/01/1395849838834267800.jpg.webp',
         'desc': isArabic ? l10n.medinaDesc : 'The City of the Prophet.',
         'location': isArabic ? l10n.locationMedina : 'Western Saudi Arabia',
         'region': 'western',
@@ -456,8 +581,22 @@ class AppConstants {
         'lat': 24.4672,
         'lng': 39.6108,
         'topPlaces': isArabic
-            ? ['المسجد النبوي', 'مسجد قباء', 'مقبرة البقيع', 'جبل أحد', 'مسجد القبلتين', 'متحف سكة حديد الحجاز']
-            : ['Prophet\'s Mosque', 'Quba Mosque', 'Al-Baqi Cemetery', 'Mount Uhud', 'Qiblatain Mosque', 'Hejaz Railway Museum'],
+            ? [
+                'المسجد النبوي',
+                'مسجد قباء',
+                'مقبرة البقيع',
+                'جبل أحد',
+                'مسجد القبلتين',
+                'متحف سكة حديد الحجاز'
+              ]
+            : [
+                'Prophet\'s Mosque',
+                'Quba Mosque',
+                'Al-Baqi Cemetery',
+                'Mount Uhud',
+                'Qiblatain Mosque',
+                'Hejaz Railway Museum'
+              ],
         'activities': isArabic
             ? {
                 'ديني': ['زيارة المسجد النبوي', 'الصلاة في قباء'],
@@ -474,20 +613,34 @@ class AppConstants {
   static String getCityImage(String cityName) {
     final name = cityName.toLowerCase();
 
-    if (name.contains('riyadh') || name.contains('رياض')) return 'https://i.pinimg.com/736x/87/d0/19/87d0197cf80132e528551adeccf5ccd3.jpg';
-    if (name.contains('jeddah') || name.contains('جدة')) return 'https://i.pinimg.com/1200x/85/cb/65/85cb65a75d0980ae3373cf1b3262adbc.jpg';
-    if (name.contains('mecca') || name.contains('مكة')) return 'https://imgs.search.brave.com/1HqcI-ZqcocK-9R1mKrm95mP3PBPAhh_1WEQJ0lkJu0/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9wbmcu/cG5ndHJlZS5jb20v/dGh1bWJfYmFjay9m/aDI2MC9iYWNrZ3Jv/dW5kLzIwMjMwNTI3/L3BuZ3RyZWUtdGhl/LWxhcmdlLWlzbGFt/aWMtbW9zcXVlLWlu/LXRoZS1ob2x5LWNp/dHktb2YtbWVjY2Et/YXQtaW1hZ2VfMjY5/MjQ5Ni5qcGc';
-    if (name.contains('medina') || name.contains('مدينة')) return 'https://static.srpcdigital.com/styles/1037xauto/public/2014/04/01/1395849838834267800.jpg.webp';
-    if (name.contains('alula') || name.contains('علا')) return 'https://cms.factmagazines.com/wp-content/uploads/2024/03/Elephant-Rock-AlUla.jpeg';
-    if (name.contains('abha') || name.contains('أبها')) return 'https://imgs.search.brave.com/DorlFb3ge3AyW55M6d8146QQy4L4midmisfemf1Wkfk/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9jbm4t/YXJhYmljLWltYWdl/cy5jbm4uaW8vY2xv/dWRpbmFyeS9pbWFn/ZS91cGxvYWQvd18x/OTIwLGNfc2NhbGUs/cV9hdXRvL2NubmFy/YWJpYy8yMDIxLzA1/LzA0L2ltYWdlcy8x/ODQxNDAuanBn';
-    if (name.contains('taif') || name.contains('طائف')) return 'https://goldenhost.co/blog/wp-content/uploads/2025/03/%D8%BA%D8%BA%D9%81%D9%81%D8%B9%D9%81%D8%B9%D8%B9%D9%81%D8%B9%D9%81-1024x576.jpg';
-    if (name.contains('najran') || name.contains('نجران')) return 'https://media.gettyimages.com/id/1455349081/photo/saudi-arabia-najran-province-najran-aerial-view-of-historic-al-aan-palace.jpg?s=612x612&w=0&k=20&c=eMI1Rot-1OaGrsE1cuCfS_x4VySKOvu9Q_Fd5YzD0ow=';
-    if (name.contains('tabuk') || name.contains('تبوك')) return 'https://saudipedia.com/var/site/storage/images/2/8/6/7/4347682-1-ara-SA/4eeb5ebd3b99-65618.jpg';
-    if (name.contains('baha') || name.contains('باحة')) return 'https://bahaadmin.baha.gov.sa/Uploads/Images/26982915-6221-4577-ae49-783540b77467_WhatsApp%20Image%202023-01-14%20at%207.26.24%20PM%20(1).jpeg';
-    if (name.contains('neom') || name.contains('نيوم')) return 'http://dealapp.sa/blog/wp-content/uploads/2023/05/%D9%85%D8%B4%D8%B1%D9%88%D8%B9-%D9%86%D9%8A%D9%88%D9%85.png';
-    if (name.contains('dammam') || name.contains('دمام')) return 'http://dealapp.sa/blog/wp-content/uploads/2020/05/%D8%AC%D8%B2%D9%8A%D8%B1%D8%A9-%D8%A7%D9%84%D9%85%D8%B1%D8%AC%D8%A7%D9%86-4.jpg';
-    if (name.contains('jazan') || name.contains('جازان')) return 'https://saudipedia.com/var/site/storage/images/2/2/8/9/5539822-1-ara-SA/e918debaf9ba-65707.jpg';
-    if (name.contains('farasan') || name.contains('فرسان')) return 'https://imgs.search.brave.com/EE0nknbTw7CswoJ-pscCrJij6Onv7uQOjRfPSUHCVWU/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9jbm4t/YXJhYmljLWltYWdl/cy5jbm4uaW8vY2xv/dWRpbmFyeS9pbWFn/ZS91cGxvYWQvd185/MjQsaF81MjAsY19m/aWxsLHFfYXV0byxn/X2NlbnRlci9jbm5h/cmFiaWMvMjAyMS8w/OS8xNi9pbWFnZXMv/MTkzNjg1LmpwZw';
+    if (name.contains('riyadh') || name.contains('رياض'))
+      return 'https://i.pinimg.com/736x/87/d0/19/87d0197cf80132e528551adeccf5ccd3.jpg';
+    if (name.contains('jeddah') || name.contains('جدة'))
+      return 'https://i.pinimg.com/1200x/85/cb/65/85cb65a75d0980ae3373cf1b3262adbc.jpg';
+    if (name.contains('mecca') || name.contains('مكة'))
+      return 'https://imgs.search.brave.com/1HqcI-ZqcocK-9R1mKrm95mP3PBPAhh_1WEQJ0lkJu0/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9wbmcu/cG5ndHJlZS5jb20v/dGh1bWJfYmFjay9m/aDI2MC9iYWNrZ3Jv/dW5kLzIwMjMwNTI3/L3BuZ3RyZWUtdGhl/LWxhcmdlLWlzbGFt/aWMtbW9zcXVlLWlu/LXRoZS1ob2x5LWNp/dHktb2YtbWVjY2Et/YXQtaW1hZ2VfMjY5/MjQ5Ni5qcGc';
+    if (name.contains('medina') || name.contains('مدينة'))
+      return 'https://static.srpcdigital.com/styles/1037xauto/public/2014/04/01/1395849838834267800.jpg.webp';
+    if (name.contains('alula') || name.contains('علا'))
+      return 'https://cms.factmagazines.com/wp-content/uploads/2024/03/Elephant-Rock-AlUla.jpeg';
+    if (name.contains('abha') || name.contains('أبها'))
+      return 'https://imgs.search.brave.com/DorlFb3ge3AyW55M6d8146QQy4L4midmisfemf1Wkfk/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9jbm4t/YXJhYmljLWltYWdl/cy5jbm4uaW8vY2xv/dWRpbmFyeS9pbWFn/ZS91cGxvYWQvd18x/OTIwLGNfc2NhbGUs/cV9hdXRvL2NubmFy/YWJpYy8yMDIxLzA1/LzA0L2ltYWdlcy8x/ODQxNDAuanBn';
+    if (name.contains('taif') || name.contains('طائف'))
+      return 'https://goldenhost.co/blog/wp-content/uploads/2025/03/%D8%BA%D8%BA%D9%81%D9%81%D8%B9%D9%81%D8%B9%D8%B9%D9%81%D8%B9%D9%81-1024x576.jpg';
+    if (name.contains('najran') || name.contains('نجران'))
+      return 'https://media.gettyimages.com/id/1455349081/photo/saudi-arabia-najran-province-najran-aerial-view-of-historic-al-aan-palace.jpg?s=612x612&w=0&k=20&c=eMI1Rot-1OaGrsE1cuCfS_x4VySKOvu9Q_Fd5YzD0ow=';
+    if (name.contains('tabuk') || name.contains('تبوك'))
+      return 'https://saudipedia.com/var/site/storage/images/2/8/6/7/4347682-1-ara-SA/4eeb5ebd3b99-65618.jpg';
+    if (name.contains('baha') || name.contains('باحة'))
+      return 'https://bahaadmin.baha.gov.sa/Uploads/Images/26982915-6221-4577-ae49-783540b77467_WhatsApp%20Image%202023-01-14%20at%207.26.24%20PM%20(1).jpeg';
+    if (name.contains('neom') || name.contains('نيوم'))
+      return 'http://dealapp.sa/blog/wp-content/uploads/2023/05/%D9%85%D8%B4%D8%B1%D9%88%D8%B9-%D9%86%D9%8A%D9%88%D9%85.png';
+    if (name.contains('dammam') || name.contains('دمام'))
+      return 'http://dealapp.sa/blog/wp-content/uploads/2020/05/%D8%AC%D8%B2%D9%8A%D8%B1%D8%A9-%D8%A7%D9%84%D9%85%D8%B1%D8%AC%D8%A7%D9%86-4.jpg';
+    if (name.contains('jazan') || name.contains('جازان'))
+      return 'https://saudipedia.com/var/site/storage/images/2/2/8/9/5539822-1-ara-SA/e918debaf9ba-65707.jpg';
+    if (name.contains('farasan') || name.contains('فرسان'))
+      return 'https://imgs.search.brave.com/EE0nknbTw7CswoJ-pscCrJij6Onv7uQOjRfPSUHCVWU/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9jbm4t/YXJhYmljLWltYWdl/cy5jbm4uaW8vY2xv/dWRpbmFyeS9pbWFn/ZS91cGxvYWQvd185/MjQsaF81MjAsY19m/aWxsLHFfYXV0byxn/X2NlbnRlci9jbm5h/cmFiaWMvMjAyMS8w/OS8xNi9pbWFnZXMv/MTkzNjg1LmpwZw';
 
     return 'https://i.pinimg.com/736x/87/d0/19/87d0197cf80132e528551adeccf5ccd3.jpg';
   }
